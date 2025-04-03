@@ -21,64 +21,64 @@ function Navbar(props) {
   ///   For navigate function
   const navigate = useNavigate();
 
-  function logOut() {
-    //alert("Paulsin");
+  // function logOut() {
+  //   //alert("Paulsin");
 
 
-      const response = axios.get(logoutUrl,   
-        { withCredentials: true }
-      )
-      .then(function (response) {
-        //console.log(response);
-        //alert(response.data);
-        if(response.data == "session_destroyed") {
-          navigate('/frontend/login');
-        }
-      })
-      .catch(function (error) {
-        console.log(error);
-      }); 
-  }
+  //     const response = axios.get(logoutUrl,   
+  //       { withCredentials: true }
+  //     )
+  //     .then(function (response) {
+  //       //console.log(response);
+  //       //alert(response.data);
+  //       if(response.data == "session_destroyed") {
+  //         navigate('/frontend/login');
+  //       }
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     }); 
+  // }
 
 
-  const fetchLoggedData = (e) => {
+  // const fetchLoggedData = (e) => {
 
-    //Functions();
+  //   //Functions();
 
-    const response = axios.get(loggedCheckUrl,   
-      { withCredentials: true }
-    )
-    .then(function (response) {
-      //console.log(response);
-      //alert(response.data);
-      if(response.data.username && response.data.password) {
-        //alert("Logged In");
-        //navigate('/frontend/profile');
-        //setSelectedDIV(loginDIV);
+  //   const response = axios.get(loggedCheckUrl,   
+  //     { withCredentials: true }
+  //   )
+  //   .then(function (response) {
+  //     //console.log(response);
+  //     //alert(response.data);
+  //     if(response.data.username && response.data.password) {
+  //       //alert("Logged In");
+  //       //navigate('/frontend/profile');
+  //       //setSelectedDIV(loginDIV);
 
-        //alert(response.data.userID);
+  //       //alert(response.data.userID);
 
-        setLoggedUserMenu(response.data.username);
-        setLoggedUserRole(response.data.userRole);
-        //setLoggedUserID(response.data.userID);
-      }
-      else {
-        //setSelectedDIV(<LoginDIV />);
-        setLoggedUserMenu("");
-      }
-      //setUsername(response.data.username);
-    })
-    .catch(function (error) {
-      console.log(error);
-    }); 
+  //       setLoggedUserMenu(response.data.username);
+  //       setLoggedUserRole(response.data.userRole);
+  //       //setLoggedUserID(response.data.userID);
+  //     }
+  //     else {
+  //       //setSelectedDIV(<LoginDIV />);
+  //       setLoggedUserMenu("");
+  //     }
+  //     //setUsername(response.data.username);
+  //   })
+  //   .catch(function (error) {
+  //     console.log(error);
+  //   }); 
 
-  }
+  // }
 
-  useEffect(() => {
-    //console.log('i fire once');
-    //fetchData();
-    fetchLoggedData();
-  }, []);
+  // useEffect(() => {
+  //   //console.log('i fire once');
+  //   //fetchData();
+  //   fetchLoggedData();
+  // }, []);
 
   return(
 
@@ -119,7 +119,7 @@ function Navbar(props) {
               <a className="nav-link" href="/frontend/location/statesList/india">Location</a>
             </li>
             
-            { loggedUserRole == "owner" ?
+            {/* { loggedUserRole == "owner" ?
 
             <li className="nav-item">
               <a className="nav-link" href="/frontend/signupCheck">Register</a>
@@ -133,10 +133,10 @@ function Navbar(props) {
               <a className="nav-link" href="/frontend/listusersowntable">Users</a>
             </li> : ""
 
-            }
+            } */}
 
 
-            {
+            {/* {
               loggedUserMenu ? 
               <li>
 
@@ -152,7 +152,7 @@ function Navbar(props) {
                     <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
                     <Dropdown.Item onClick={logOut}>Log out</Dropdown.Item>
                   </Dropdown.Menu>
-                </Dropdown>
+                </Dropdown> */}
 
 {/*
 
@@ -170,8 +170,8 @@ function Navbar(props) {
                   </ul>
                 </div>
 */}
-              </li> : ""
-            }
+              {/* </li> : ""
+            } */}
 
             
           </ul>
