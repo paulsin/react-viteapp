@@ -1,7 +1,8 @@
 import { useState } from 'react'
+
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
- //import './App.css'
+//  import './App.css'
 import './custom/custom.css';
 import './custom/anju.css';
 import './custom/paulsin.css';
@@ -20,14 +21,17 @@ import {
  import ProfileCheck from './components/accounts/ProfileCheck';
  import SignUpCheck from './components/accounts/SignUpCheck';
  import ListUsersCustomTableCheck from './components/accounts/ListUsersCustomTableCheck';
-//  import IndividualProperty from './components/public/IndividualProperty';
+import IndividualProperty from './components/public/IndividualProperty';
  import AboutAs from './components/public/AboutAs';
 import ContactAs from './components/public/ContactAs';
+import LocationCheck from './components/property/LocationCheck';
 
 
    import { SnackbarProvider, useSnackbar } from 'notistack';
 
+
 function App() {
+  
   const [count, setCount] = useState(0)
 
   return (
@@ -41,6 +45,7 @@ function App() {
      <SnackbarProvider>
       <BrowserRouter>
         <Routes>
+
           <Route path="/" element={<Home />} />
           
           <Route path="/test" element={<Test />} />
@@ -53,13 +58,14 @@ function App() {
      
           <Route path='/frontend/listusersowntable' element={<ListUsersCustomTableCheck />} />
           <Route path='/frontend/profile' element={<ProfileCheck />} />  
-          {/* <Route path="/frontend/individualProperty/:propertyID" element={<IndividualProperty />} /> */}
+           <Route path="/frontend/individualProperty/:propertyID" element={<IndividualProperty />} /> 
           <Route path="/frontend/aboutas" element={<AboutAs />} />
           <Route path="/frontend/contactas" element={<ContactAs />} />
-          {/* <Route path='/frontend/addProperty/:operation/:uniqueID' element={<AddPropertyCheck />} />
           <Route path='/frontend/location/:locationType/:countryName' element={<LocationCheck />} />
           <Route path='/frontend/location/:locationType/:countryName/:stateID' element={<LocationCheck />} />
           <Route path='/frontend/location/:locationType/:countryName/:stateID/:districtID' element={<LocationCheck />} />
+          {/* <Route path='/frontend/addProperty/:operation/:uniqueID' element={<AddPropertyCheck />} />
+
           <Route path='/frontend/properties' element={<PropertiesCheck />} />
           <Route path='/frontend/addimages/:propertyID' element={<AddImagesCheck />} />
           <Route path="/frontend/individualProperty/:propertyID" element={<IndividualProperty />} />

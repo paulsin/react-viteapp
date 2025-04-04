@@ -5,7 +5,7 @@ import Navbar from "../common/Navbar";
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import {  Link,useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 var newUrl = Url + 'accounts/person';
 
@@ -24,7 +24,7 @@ const Test = () => {
         
         const response = await axios.get(individualURL, { withCredentials: true });
 
-       // alert(response.data);
+        //alert(response.data);
 
         setData(response.data);
         
@@ -58,7 +58,7 @@ const Test = () => {
       <Navbar />
 
 
-        <div className="container mt-1 pt-2" id="containerspace">
+      <div  className="container mt-3">
           <h2>Registration form</h2>
           
           {data}

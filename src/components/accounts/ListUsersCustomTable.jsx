@@ -129,77 +129,78 @@ const ListUsersCustomTable = () => {
 
   return(
 
-    <div>
+    <>
       <Navbar /> 
-
-      <div className="input-group p-2">
-        <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" 
+      <div>
+        <div className="input-group p-2">
+          <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" 
           value={searchText} onChange={handleSearchBoxChange}/>
+        </div>
+        <div className="table-responsive pl-3 pb-3 pr-3">
+          <table className="table table-striped" id="selectedTable">
+            <thead>
+              <tr>
+                <th>
+                  Index
+                </th>
+                <th>
+                  ID
+                </th>
+                <th>
+                  Name
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Mobile
+                </th>
+                <th>
+                  User role
+                </th>
+                <th>
+                  Edit
+                </th>
+                <th>
+                  Delete
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {data.map(key =>  (
+                <tr>
+                  <td>
+                    {slno++}
+                  </td>
+                  <td>
+                    {key._id}
+                  </td>
+                  <td>
+                    {key.name}
+                  </td>
+                  <td>
+                    {key.email}
+                  </td>
+                  <td>
+                    {key.mobile}
+                  </td> 
+                  <td>
+                    {key.userRole}
+                  </td> 
+                  <td>
+                    <button className="btn btn-danger" onClick={()=>handleEdit(key._id)}>Edit</button>
+                  </td>
+                  <td>
+                    <button className="btn btn-danger" onClick={()=>handleDelete(key._id)}>Delete</button>
+                  </td> 
+                </tr>
+              ))} 
+
+            </tbody>
+          </table>
+        </div>
       </div>
-
-      <table className="table table-striped" id="selectedTable">
-        <thead>
-          <tr>
-            <th>
-              Index
-            </th>
-            <th>
-              ID
-            </th>
-            <th>
-              Name
-            </th>
-            <th>
-              Email
-            </th>
-            <th>
-              Mobile
-            </th>
-            <th>
-              User role
-            </th>
-            <th>
-              Edit
-            </th>
-            <th>
-              Delete
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {data.map(key =>  (
-            <tr>
-              <td>
-                {slno++}
-              </td>
-              <td>
-                {key._id}
-              </td>
-              <td>
-                {key.name}
-              </td>
-              <td>
-                {key.email}
-              </td>
-              <td>
-                {key.mobile}
-              </td> 
-              <td>
-                {key.userRole}
-              </td> 
-              <td>
-                <button className="btn btn-danger" onClick={()=>handleEdit(key._id)}>Edit</button>
-              </td>
-              <td>
-                <button className="btn btn-danger" onClick={()=>handleDelete(key._id)}>Delete</button>
-              </td> 
-            </tr>
-          ))} 
-
-        </tbody>
-      </table>
-
-    </div>
+    </>
 
   )
 };

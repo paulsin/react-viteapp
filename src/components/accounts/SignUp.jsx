@@ -265,7 +265,7 @@ const SignUp = (props) => {
       <Navbar />
 
 
-        <div className="container mt-5" id="regtop">
+        <div className="pl-3 mt-5 pb-3 pr-3 ">
           <h2>Registration form</h2>
           
             <div className={alertClass} role="alert">

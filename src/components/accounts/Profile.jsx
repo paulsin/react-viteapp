@@ -35,11 +35,11 @@ const Profile = () => {
     return(
         <>
         <Navbar /> 
-<div className="container mt-1">
+        <div className="container mt-3">
      
-      <h1>Hello man</h1>
+            <h1>Hello man</h1>
       
-    </div>
+        </div>
     </>
 
 
