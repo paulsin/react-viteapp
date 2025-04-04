@@ -14,7 +14,7 @@ var loggedCheckUrl = Url + 'accounts/loggedInUser';
 function Loading() {
 
     return(
-      <div class="container d-flex justify-content-center">
+      <div className="container d-flex justify-content-center">
         <ClipLoader
 
           size={150}

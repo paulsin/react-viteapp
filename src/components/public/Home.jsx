@@ -760,7 +760,7 @@ const handleSelectedPropertyType = (e) => {
   return(
       <div>
         <NavbarPublic />
-        <header class="page-header header container-fluid-full mx-auto mt-5 p-5 ">
+        <header class="page-header header container-fluid-full mx-auto p-3">
           <div className='container p-4' id="searchpropclass" >
                 {/* <div className='w-50 bg-white rounded p-3'> */}
             <form>

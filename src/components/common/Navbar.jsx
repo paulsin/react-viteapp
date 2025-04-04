@@ -83,7 +83,7 @@ function Navbar(props) {
   return(
 
     <>
-      <nav className="navbar navbar-expand-md">
+      <nav className="navbar navbar-expand-md  " style={{ border: "2px solid red" }}>
         <a className="navbar-brand" href="#"><img src={logo_agentfree} width="80px" height="50px"/></a>
         <button className="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
           <span className="navbar-toggler-icon"></span>
