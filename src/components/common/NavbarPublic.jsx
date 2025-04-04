@@ -18,60 +18,60 @@ function NavbarPublic(props) {
   ///   For navigate function
   const navigate = useNavigate();
 
-  // function logOut() {
-  //   //alert("Paulsin");
+  function logOut() {
+    //alert("Paulsin");
 
 
-  //     const response = axios.get(logoutUrl,   
-  //       { withCredentials: true }
-  //     )
-  //     .then(function (response) {
-  //       //console.log(response);
-  //       //alert(response.data);
-  //       if(response.data == "session_destroyed") {
-  //         navigate('/frontend/login');
-  //       }
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     }); 
-  // }
+      const response = axios.get(logoutUrl,   
+        { withCredentials: true }
+      )
+      .then(function (response) {
+        //console.log(response);
+        //alert(response.data);
+        if(response.data == "session_destroyed") {
+          navigate('/frontend/login');
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      }); 
+  }
 
 
-  // const fetchLoggedData = (e) => {
+  const fetchLoggedData = (e) => {
 
-  //   //Functions();
+    //Functions();
 
-  //   const response = axios.get(loggedCheckUrl,   
-  //     { withCredentials: true }
-  //   )
-  //   .then(function (response) {
-  //     //console.log(response);
-  //     //alert(response.data);
-  //     if(response.data.username && response.data.password) {
-  //       //alert("Logged In");
-  //       //navigate('/frontend/profile');
-  //       //setSelectedDIV(loginDIV);
-  //       setLoggedUserMenu(response.data.username);
-  //       setLoggedUserRole(response.data.userRole);
-  //     }
-  //     else {
-  //       //setSelectedDIV(<LoginDIV />);
-  //       setLoggedUserMenu("");
-  //     }
-  //     //setUsername(response.data.username);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   }); 
+    const response = axios.get(loggedCheckUrl,   
+      { withCredentials: true }
+    )
+    .then(function (response) {
+      //console.log(response);
+      //alert(response.data);
+      if(response.data.username && response.data.password) {
+        //alert("Logged In");
+        //navigate('/frontend/profile');
+        //setSelectedDIV(loginDIV);
+        setLoggedUserMenu(response.data.username);
+        setLoggedUserRole(response.data.userRole);
+      }
+      else {
+        //setSelectedDIV(<LoginDIV />);
+        setLoggedUserMenu("");
+      }
+      //setUsername(response.data.username);
+    })
+    .catch(function (error) {
+      console.log(error);
+    }); 
 
-  // }
+  }
 
-  // useEffect(() => {
-  //   //console.log('i fire once');
-  //   //fetchData();
-  //   fetchLoggedData();
-  // }, []);
+  useEffect(() => {
+    //console.log('i fire once');
+    //fetchData();
+    fetchLoggedData();
+  }, []);
 
   return(
 
