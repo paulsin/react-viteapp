@@ -14,6 +14,9 @@ export default defineConfig({
       build: {
         chunkSizeWarningLimit: 1000, // Increases limit from 500KB to 1000KB
       },
+      optimizeDeps: {
+        include: ['react-router-dom']
+      }
     },
   },
 });
