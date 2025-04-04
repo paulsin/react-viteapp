@@ -24,6 +24,7 @@ import {
  import AboutAs from './components/public/AboutAs';
 import ContactAs from './components/public/ContactAs';
 
+
    import { SnackbarProvider, useSnackbar } from 'notistack';
 
 function App() {
@@ -65,6 +66,7 @@ function App() {
 
           <Route path='/frontend/propertyCustomerRequestForOwner/:param1/:param2' element={<PropertyCustomerRequestForOwnerCheck />} />
           <Route path='/frontend/listOwners' element={<OwnerCheck/>} /> */}
+          
 
         </Routes>
       </BrowserRouter>
