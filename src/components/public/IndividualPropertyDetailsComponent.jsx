@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import Select from 'react-select';
 import { Url } from "../../constants/global";
 import axios from "axios";
-import { FaHeart } from "react-icons/fa";
+
 import { ToWords } from 'to-words';
 
 const IndividualPropertyDetailsComponent = (props) => {
