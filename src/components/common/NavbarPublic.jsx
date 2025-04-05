@@ -77,7 +77,7 @@ function NavbarPublic(props) {
 
     <>
       <nav class="navbar navbar-expand-md" id="navbarPublic">
-        <a class="navbar-brand" href="#"><img src={logo_agentfree} width="80px" height="50px"/></a>
+        <a class="navbar-brand pl-3" href="#"><img src={logo_agentfree} width="80px" height="50px"/></a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

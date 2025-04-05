@@ -54,7 +54,7 @@ const facingPolarity = [
     { value: 'Builder', label: 'Builder' },
     { value: 'Developer', label: 'Developer' }
   ]
-  const PropertyStatus=[
+  const PropertyStatusOptions=[
     { value:'',label:'Property Status'},
     { value:'Public',label:'Public'},
     { value:'Hot',label:'Hot'},
@@ -74,4 +74,4 @@ export {pricefromSelect}
 export {pricetoSelect}
 export {facingPolarity}
 export {OwnerorBuilderorDeveloper}
-export {PropertyStatus}
+export {PropertyStatusOptions}
