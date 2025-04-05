@@ -13,8 +13,21 @@ body {
     height: 80px; 
     width: 100%;
     z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
 }
+@media (max-width: 900px) {
+    .navbar {
+      flex-direction: column;
+      align-items: flex-end;
+    }
+  
+    .navbar a {
+      padding: 10px 0;
+    }
+  }
 
 #navbarPublic {
     /* background:#640505;  brown*/
@@ -25,7 +38,7 @@ body {
 
 .nav-link,
 .navbar-brand {
-    color: #fff;
+    color: #050202;
     cursor: pointer;
 }
 .nav-link {

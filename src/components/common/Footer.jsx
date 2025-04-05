@@ -1,8 +1,8 @@
 import React from 'react'
-import { FaPhoneAlt } from "react-icons/fa";
-import { IoLogoWhatsapp } from "react-icons/io";
-import { IoLocation } from "react-icons/io5";
-import { CgMail } from "react-icons/cg";
+import WhatsAppWhite from '../../assets/icons/whatsapp-white.svg?react';
+import { Mail } from 'lucide-react';
+import { MapPin } from 'lucide-react';
+import { Phone } from 'lucide-react';
 
 function Footer() {
   return (
@@ -25,10 +25,20 @@ function Footer() {
               </div> 
               <div class="col-lg-3 col-md-3 col-sm-12 mx-auto p-3">
                   <h4>Contact</h4><br/>
-                  <a id="linktagsinfooter" href=""><FaPhoneAlt />&nbsp;&nbsp;&nbsp;+91 - 9188 338 732</a><br/>
+                  <div id="linktagsinfooter">
+                          <Phone size={22} className="text-black-500" />&nbsp;&nbsp;&nbsp;+91 - 9188 338 732<br/><br/>
+                         
+                          <WhatsAppWhite className="text-white-500"  width={18} height={18}/>&nbsp;&nbsp;&nbsp;+91 - 9188 338 732<br/><br/>
+                          <Mail size={22} className="text-black-600" />&nbsp;&nbsp;agentfreedeal@gmail.com<br/><br/>
+                          <MapPin size={20} className="text-black-500" />&nbsp;&nbsp;&nbsp;Kochi, Kerala, India
+                  </div>
+                        
+                   
+                      {/* </div>  */}
+                  {/* <a id="linktagsinfooter" href=""><FaPhoneAlt />&nbsp;&nbsp;&nbsp;+91 - 9188 338 732</a><br/>
                   <a id="linktagsinfooter" href=""><IoLogoWhatsapp />&nbsp;&nbsp;&nbsp;+91 - 9188 338 732</a><br/>
                   <a id="linktagsinfooter" href=""><CgMail />&nbsp;&nbsp;&nbsp;agentfreedeal@gmail.com</a><br/>
-                  <a id="linktagsinfooter" href=""><IoLocation />&nbsp;&nbsp;&nbsp;Kochi, Kerala, India</a><br/> 
+                  <a id="linktagsinfooter" href=""><IoLocation />&nbsp;&nbsp;&nbsp;Kochi, Kerala, India</a><br/>  */}
               </div> 
               <div class="col-lg-3 col-md-3 col-sm-12 mx-auto p-3">
                 <h4 class="feature-touch">Subscribe</h4>

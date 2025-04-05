@@ -83,54 +83,54 @@ function Navbar(props) {
   return(
 
     <>
-      <nav className="navbar navbar-expand-md  " style={{ border: "2px solid red" }}>
-        <a className="navbar-brand" href="#"><img src={logo_agentfree} width="80px" height="50px"/></a>
-        <button className="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-          <span className="navbar-toggler-icon"></span>
+      <nav class="navbar navbar-expand-lg ">
+        <a class="navbar-brand pl-3" href="#"><img src={logo_agentfree} width="80px" height="50px"/></a>
+        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="main-navigation">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link" href="/">Home</a>
+        <div class="collapse navbar-collapse" id="main-navigation">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Home</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/test">Test</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/test">Test</a>
             </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/frontend/login">Login</a>
-            </li>
-
-            <li className="nav-item">
-              <a className="nav-link" href="/frontend/addProperty/new/new">Add property</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/frontend/login">Login</a>
             </li>
 
-            <li className="nav-item">
-              <a className="nav-link" href="/frontend/properties">Properties</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/frontend/addProperty/new/new">Add property</a>
             </li>
 
-            <li className="nav-item">
-              <a className="nav-link" href="/frontend/propertyCustomerRequestForOwner/table/table">Requests</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/frontend/listOwners">Owners</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/frontend/properties">Properties</a>
             </li>
 
-            <li className="nav-item">
-              <a className="nav-link" href="/frontend/location/statesList/india">Location</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/frontend/propertyCustomerRequestForOwner/table/table">Requests</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/frontend/listOwners">Owners</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/frontend/location/statesList/india">Location</a>
             </li>
             
             { loggedUserRole == "owner" ?
 
-            <li className="nav-item">
-              <a className="nav-link" href="/frontend/signupCheck">Register</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/frontend/signupCheck">Register</a>
             </li> : ""
 
             }
 
             { loggedUserRole == "owner" ?
 
-            <li className="nav-item">
-              <a className="nav-link" href="/frontend/listusersowntable">Users</a>
+            <li class="nav-item">
+              <a class="nav-link" href="/frontend/listusersowntable">Users</a>
             </li> : ""
 
             }

@@ -25,6 +25,9 @@ import IndividualProperty from './components/public/IndividualProperty';
  import AboutAs from './components/public/AboutAs';
 import ContactAs from './components/public/ContactAs';
 import LocationCheck from './components/property/LocationCheck';
+import PropertiesCheck from './components/property/PropertiesCheck';
+import AddImagesCheck from './components/property/AddImagesCheck';
+import AddPropertyCheck from './components/property/AddPropertyCheck';
 
 
    import { SnackbarProvider, useSnackbar } from 'notistack';
@@ -58,16 +61,18 @@ function App() {
      
           <Route path='/frontend/listusersowntable' element={<ListUsersCustomTableCheck />} />
           <Route path='/frontend/profile' element={<ProfileCheck />} />  
-           <Route path="/frontend/individualProperty/:propertyID" element={<IndividualProperty />} /> 
+          <Route path="/frontend/individualProperty/:propertyID" element={<IndividualProperty />} /> 
           <Route path="/frontend/aboutas" element={<AboutAs />} />
           <Route path="/frontend/contactas" element={<ContactAs />} />
           <Route path='/frontend/location/:locationType/:countryName' element={<LocationCheck />} />
           <Route path='/frontend/location/:locationType/:countryName/:stateID' element={<LocationCheck />} />
           <Route path='/frontend/location/:locationType/:countryName/:stateID/:districtID' element={<LocationCheck />} />
-          {/* <Route path='/frontend/addProperty/:operation/:uniqueID' element={<AddPropertyCheck />} />
-
           <Route path='/frontend/properties' element={<PropertiesCheck />} />
           <Route path='/frontend/addimages/:propertyID' element={<AddImagesCheck />} />
+          <Route path='/frontend/addProperty/:operation/:uniqueID' element={<AddPropertyCheck />} />
+          {/* 
+   
+     
           <Route path="/frontend/individualProperty/:propertyID" element={<IndividualProperty />} />
 
           <Route path='/frontend/propertyCustomerRequestForOwner/:param1/:param2' element={<PropertyCustomerRequestForOwnerCheck />} />
