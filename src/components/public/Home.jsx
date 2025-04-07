@@ -3,7 +3,6 @@ import background from "../../images/background.jpg";
 
 import Navbar from "../common/NavbarPublic";
 import Footer from "../common/Footer"
-import NavbarPublic from "../common/NavbarPublic";
 
 import { Search } from 'lucide-react';
 
@@ -22,6 +21,8 @@ import { neworOldType } from "../../constants/global";
 import { pricefromSelect } from "../../constants/global";
 import { pricetoSelect } from "../../constants/global";
 import { priceRangeSelect } from "../../constants/global";
+import AppNavbar from "../common/AppNavbar";
+
 
 function Home() {
   const [selectedpropertytype, setSelectedPropertyType] = useState([]);
@@ -758,7 +759,7 @@ const handleSelectedPropertyType = (e) => {
   }
   return(
       <div>
-        <NavbarPublic />
+        <AppNavbar />
         <header class="page-header header container-fluid-full mx-auto p-3">
           <div className='container p-4' id="searchpropclass" >
                 {/* <div className='w-50 bg-white rounded p-3'> */}

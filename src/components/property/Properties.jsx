@@ -1,6 +1,7 @@
 
 import React from "react";
 import background from "../../images/background.jpg";
+// import AppNavbar from "../common/AppNavbar";
 import Navbar from "../common/Navbar";
 import { Url } from "../../constants/global";
 import axios from "axios";
@@ -163,6 +164,7 @@ const Properties = (props) => {
       <div>
 
         <Navbar />
+        {/* <AppNavbar/> */}
           <div>
             <div class="row mb-3 p-4">
     

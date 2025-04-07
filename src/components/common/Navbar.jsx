@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import background from "../../images/background.jpg";
 import axios from "axios";
 import { Url } from "../../constants/global";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import Dropdown from 'react-bootstrap/Dropdown';
 import logo_agentfree from '../../images/logo_agentfree.jpeg';
@@ -83,8 +83,8 @@ function Navbar(props) {
   return(
 
     <>
-      <nav class="navbar navbar-expand-lg ">
-        <a class="navbar-brand pl-3" href="#"><img src={logo_agentfree} width="80px" height="50px"/></a>
+      <nav class="navbar navbar-expand-md ">
+        <a class="navbar-brand" href="#"><img src={logo_agentfree} width="80px" height="50px"/></a>
         <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
           <span class="navbar-toggler-icon"></span>
         </button>

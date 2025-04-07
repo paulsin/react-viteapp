@@ -28,6 +28,7 @@ import LocationCheck from './components/property/LocationCheck';
 import PropertiesCheck from './components/property/PropertiesCheck';
 import AddImagesCheck from './components/property/AddImagesCheck';
 import AddPropertyCheck from './components/property/AddPropertyCheck';
+import OwnerCheck from './components/property/OwnerCheck';
 
 
    import { SnackbarProvider, useSnackbar } from 'notistack';
@@ -70,13 +71,14 @@ function App() {
           <Route path='/frontend/properties' element={<PropertiesCheck />} />
           <Route path='/frontend/addimages/:propertyID' element={<AddImagesCheck />} />
           <Route path='/frontend/addProperty/:operation/:uniqueID' element={<AddPropertyCheck />} />
+          <Route path='/frontend/listOwners' element={<OwnerCheck/>} />
           {/* 
    
      
-          <Route path="/frontend/individualProperty/:propertyID" element={<IndividualProperty />} />
+         />
 
           <Route path='/frontend/propertyCustomerRequestForOwner/:param1/:param2' element={<PropertyCustomerRequestForOwnerCheck />} />
-          <Route path='/frontend/listOwners' element={<OwnerCheck/>} /> */}
+          */}
           
 
         </Routes>
