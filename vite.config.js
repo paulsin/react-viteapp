@@ -12,12 +12,23 @@ export default defineConfig({
         secure: false,
       },
    
+      // build: {
+      //   chunkSizeWarningLimit: 1000, // Increases limit from 500KB to 1000KB
+      // },
       build: {
-        chunkSizeWarningLimit: 1000, // Increases limit from 500KB to 1000KB
+        rollupOptions: {
+          output: {
+            manualChunks: {
+              // You can define custom chunk names
+              vendor: ['bootstrap', 'axios','compressorjs','lucide-react','notistack','react-qr-code','react-select','to-words'],
+ 
+            }
+          }
+        }
       },
       optimizeDeps: {
         include: ['react-router-dom']
-      }
+      },
    
     },
   },
