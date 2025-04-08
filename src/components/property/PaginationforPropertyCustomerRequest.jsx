@@ -1,7 +1,6 @@
 import React from 'react'
 
-const Pagination = ({totalPosts,recordsPerPage,setCurrentPage,currentPage,firstpostIndex,lastpostIndex}) => {
-    
+const PaginationforPropertyCustomerRequest = ({totalPosts,recordsPerPage,setCurrentPage,currentPage,firstpostIndex,lastpostIndex}) => {
     let pages=[]
    
     for(let i=1;i<= Math.ceil(totalPosts/recordsPerPage);i++){
@@ -20,7 +19,7 @@ const Pagination = ({totalPosts,recordsPerPage,setCurrentPage,currentPage,firstp
             setCurrentPage(currentPage+1)
         }
     }
-
+ 
     let plength=pages.length;
   return (
     <div>
@@ -35,26 +34,29 @@ const Pagination = ({totalPosts,recordsPerPage,setCurrentPage,currentPage,firstp
             <nav aria-label="..."  >
               <ul class="pagination" >
                 <li class="page-item" >
-                  <a class="page-link" href="#"  id="palink"tabindex="0" onClick={prePage} >Previous</a>
+                  <a  class="page-link" id="pagination-link" href="#" tabindex="0" onClick={prePage} >Previous</a>
                 </li>
                 {
                 pages.map((page,index)=>{
                     return <li  class={`page-item ${page==currentPage ? 'active' : '' }` } key={index} >
-                        <a href="#" className="page-link"  id="palink" onClick={()=>setCurrentPage(page)} >{page}</a>
+                        <a href="#"  class="page-link"  id="pagination-link" onClick={()=>setCurrentPage(page)} >{page}</a>
                     </li>
                         })
 
                 }
                 
                 <li class="page-item">
-                  <a class="page-link" href="#" id="palink" onClick={nextPage}>Next</a>
+                  <a  href="#" class="page-link"  id="pagination-link" onClick={nextPage}>Next</a>
                 </li> 
-             
+                
                 {plength == 1 ?  <li  class="page-item" >
                     <a href="#" class="page-link"   id="pagination-link" >Total {plength} Page</a>
                 </li>:   <li  class="page-item" >
                     <a href="#" class="page-link"   id="pagination-link" >Total {plength} Pages</a>
                 </li>}
+            
+              
+                    
                
                  
                  
@@ -64,4 +66,4 @@ const Pagination = ({totalPosts,recordsPerPage,setCurrentPage,currentPage,firstp
   )
 }
 
-export default Pagination
+export default PaginationforPropertyCustomerRequest
