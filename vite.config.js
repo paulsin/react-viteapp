@@ -16,6 +16,7 @@ export default defineConfig({
       //   chunkSizeWarningLimit: 1000, // Increases limit from 500KB to 1000KB
       // },
       build: {
+        // chunkSizeWarningLimit: 1500, // in kB
         rollupOptions: {
           output: {
             manualChunks: {
@@ -25,6 +26,9 @@ export default defineConfig({
             }
           }
         }
+    
+        
+   
       },
       optimizeDeps: {
         include: ['react-router-dom']

@@ -49,9 +49,11 @@ const PaginationforOwnersList= ({totalPosts,recordsPerPage,setCurrentPage,curren
                   <a  href="#" class="page-link"  id="pagination-link" onClick={nextPage}>Next</a>
                 </li> 
              
-                <li  class="page-item" >
+                {plength == 1 ?  <li  class="page-item" >
+                    <a href="#" class="page-link"   id="pagination-link" >Total {plength} Page</a>
+                </li>:   <li  class="page-item" >
                     <a href="#" class="page-link"   id="pagination-link" >Total {plength} Pages</a>
-                </li>
+                </li>}
                     
                
                  
