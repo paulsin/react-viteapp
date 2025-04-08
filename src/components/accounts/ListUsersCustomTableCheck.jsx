@@ -1,16 +1,13 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {  useNavigate, useParams } from "react-router-dom";
-import Loading from "../common/Loading";
-import SignUp from "./SignUp";
-//import { Login } from "react-admin";
-import ListUsersCustomTable from "./ListUsersCustomTable";
-import NotAuthorized from "../common/NotAuthorized";
+
+const Loading = React.lazy(() => import("../common/Loading"));
+const ListUsersCustomTable= React.lazy(() => import("./ListUsersCustomTable"));
+const NotAuthorized = React.lazy(() => import("../common/NotAuthorized"));
 
 var newUrl = Url + 'accounts/person';
 
@@ -31,7 +28,7 @@ const ListUsersCustomTableCheck = () => {
     const [emailBoxStatus, setEmailBoxStatus] = useState(false);
 //    const [dataCheckFlag, setDataCheckFlag] = useState(0);
 
-    const [selectedDIV, setSelectedDIV] = useState(<Loading/>);
+    const [selectedDIV, setSelectedDIV] = useState(<Suspense><Loading/></Suspense>);
     
 
     ///   For navigate function
@@ -56,10 +53,10 @@ const ListUsersCustomTableCheck = () => {
               //alert("Logged In");
               //navigate('/frontend/profile');  
             if(response.data.userRole == "owner") {
-              setSelectedDIV(<ListUsersCustomTable/>);
+              setSelectedDIV(<Suspense><ListUsersCustomTable/></Suspense>);
             }
             else {
-              setSelectedDIV(<NotAuthorized />);
+              setSelectedDIV(<Suspense><NotAuthorized /></Suspense>);
             }
           }
           else {

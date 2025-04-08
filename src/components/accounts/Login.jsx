@@ -1,14 +1,16 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+
+
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {   Link,useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import Loading from "../common/Loading";
-import LoginDIV from "./LoginDiv";
+const Loading = React.lazy(() => import("../common/Loading"));
+const LoginDIV = React.lazy(() => import("./LoginDiv"));
+const Navbar = React.lazy(() => import("../common/Navbar"));
+
 //import Functions from "../common/Functions";
 import { fetchLoggedDataCommon } from "../common/Functions";
 
@@ -26,7 +28,7 @@ const Login = () => {
     const [data, setData] = useState([]);
     const [buttonLabel, setButtonLabel] = useState("Submit");
 //    const [dataCheckFlag, setDataCheckFlag] = useState(0);
-    const [selectedDIV, setSelectedDIV] = useState(<Loading/>);
+    const [selectedDIV, setSelectedDIV] = useState(<Suspense><Loading/></Suspense>);
 
     ///   For navigate function
     const navigate = useNavigate();
@@ -54,7 +56,7 @@ const Login = () => {
           //setSelectedDIV(loginDIV);
         }
         else {
-          setSelectedDIV(<LoginDIV />);
+          setSelectedDIV(<Suspense><LoginDIV /></Suspense>);
         }
         //setUsername(response.data.username);
       })
@@ -101,7 +103,7 @@ const Login = () => {
 
     <div>
 
-      <Navbar />
+       <Suspense><Navbar /> </Suspense> 
 
       {selectedDIV}
 

@@ -1,9 +1,10 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+
+const Navbar = React.lazy(() => import("../common/Navbar"));
+
 import { Url } from "../../constants/global";
-import axios from "axios";
+
 import { useState, useEffect } from "react";
 import {  Link,useNavigate, useParams } from "react-router-dom";
 
@@ -34,7 +35,7 @@ const Profile = () => {
 
     return(
         <>
-        <Navbar /> 
+        <Suspense><Navbar /> </Suspense>
         <div className="container mt-3">
      
             <h1>Hello man</h1>

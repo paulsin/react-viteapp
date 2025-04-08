@@ -1,16 +1,19 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+
+
+
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {  Link,useNavigate, useParams } from "react-router-dom";
 
 var newUrl = Url + 'accounts/person';
+const Navbar = React.lazy(() => import("../common/Navbar"));
 
 
 const SignUp = (props) => {
+   
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -262,7 +265,7 @@ const SignUp = (props) => {
 
     <div>
 
-      <Navbar />
+       <Suspense><Navbar/></Suspense>
 
 
         <div className="pl-3 mt-5 pb-3 pr-3 ">

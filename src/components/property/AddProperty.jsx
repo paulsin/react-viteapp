@@ -10,7 +10,7 @@ import Select from "react-select";
 import { propertyTypes } from "../../constants/global";
 import { transactionType } from "../../constants/global";
 import { PropertyStatusOptions } from "../../constants/global";
-import data from "../../json/places.json"
+
 import { ProgressBar } from "react-bootstrap";
 import Compressor from 'compressorjs';
 import AddPropertyTypesAsComponent from "./AddPropertyTypesAsComponent";

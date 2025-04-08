@@ -1,6 +1,6 @@
 
 import React from "react";
-import background from "../../images/background.jpg";
+
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";

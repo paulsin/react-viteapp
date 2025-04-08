@@ -1,20 +1,21 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+
+
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import {   Link,useNavigate, useParams } from "react-router-dom";
-import Profile from "./Profile";
-import Loading from "../common/Loading";
+
+const Profile = React.lazy(() => import("./Profile"));
+const Loading = React.lazy(() => import("../common/Loading"));
 
 var newUrl = Url + 'accounts/loggedInUser';
 
 
 const ProfileCheck = () => {
 
-  const [selectedDIV, setSelectedDIV] = useState(<Loading/>);
+  const [selectedDIV, setSelectedDIV] = useState(<Suspense><Loading/></Suspense>);
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -39,7 +40,7 @@ const ProfileCheck = () => {
         //alert(response.data);
         if(response.data.username && response.data.password) {
           //setUsername(response.data.username);
-          setSelectedDIV(<Profile />);
+          setSelectedDIV(<Suspense><Profile /></Suspense>);
         }
         else {
           navigate('/frontend/login');

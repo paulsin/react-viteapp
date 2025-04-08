@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from "react";
-import background from "../../images/background.jpg";
+import React,{Suspense ,useState, useEffect } from "react";
 
-import Navbar from "../common/NavbarPublic";
-import Footer from "../common/Footer";
+
+const Footer = React.lazy(() => import('../common/Footer'));
+const AppNavbar= React.lazy(() => import("../common/AppNavbar"));
+
+const IndividualPropertyImagesasComponent= React.lazy(() => import("./IndividualPropertyImagesasComponent"));
+const IndividualPropertyDetailsComponent= React.lazy(() => import("./IndividualPropertyDetailsComponent"));
+const IndividualPropertymessageComponent= React.lazy(() => import("./IndividualPropertymessageComponent"));
+const IndividualPropertyGoogleMap= React.lazy(() => import("./IndividualPropertyGoogleMap"));
+const IndividualPropertyRelatedProperty= React.lazy(() => import("./IndividualPropertyRelatedProperty"));
 
 
 
@@ -11,16 +17,9 @@ import axios from "axios";
 import { Url } from "../../constants/global";
 import Select from 'react-select';
 
-import Pagination from "./Pagination";
-import { propertyTypes } from "../../constants/global";
-import { transactionType } from "../../constants/global";
-import { NoImage } from "../../constants/global";
+
 import { Link, useNavigate, useParams } from "react-router-dom";
-import IndividualPropertyImagesasComponent from "./IndividualPropertyImagesasComponent";
-import IndividualPropertyDetailsComponent from "./IndividualPropertyDetailsComponent";
-import IndividualPropertymessageComponent from "./IndividualPropertymessageComponent";
-import IndividualPropertyGoogleMap from "./IndividualPropertyGoogleMap";
-import IndividualPropertyRelatedProperty from "./IndividualPropertyRelatedProperty";
+
 var propertyImagesurl=Url+'propertyImages/';
 
 
@@ -37,14 +36,15 @@ function IndividualProperty() {
 
   return(
       <div>
-        <Navbar/>
-        <IndividualPropertyImagesasComponent propertyID={propertyID}/>
-       <IndividualPropertyDetailsComponent propertyID={propertyID}/>
-        <IndividualPropertymessageComponent propertyID={propertyID}/>
-        {/* <IndividualPropertyGoogleMap propertyID={propertyID}/> */}
-        <IndividualPropertyRelatedProperty propertyID={propertyID}/>
+        <Suspense> <AppNavbar /></Suspense>
+        <Suspense><IndividualPropertyImagesasComponent propertyID={propertyID}/></Suspense>
+        <Suspense><IndividualPropertyDetailsComponent propertyID={propertyID}/></Suspense>
+        <Suspense><IndividualPropertymessageComponent propertyID={propertyID}/></Suspense>
+        {/* <Suspense><IndividualPropertyGoogleMap propertyID={propertyID}/></Suspense> */}
+        <Suspense><IndividualPropertyRelatedProperty propertyID={propertyID}/></Suspense>
+      
            
-        <Footer/>
+         <Suspense><Footer/></Suspense> 
       </div>
     )
 }

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { OwnerorBuilderorDeveloper } from "../../constants/global";
-import Select from 'react-select';
+
+
 import { Url } from "../../constants/global";
 import axios from "axios";
 import PhoneInput from 'react-phone-number-input';

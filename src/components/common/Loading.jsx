@@ -1,9 +1,8 @@
 
 import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "./Navbar";
-import { Url } from "../../constants/global";
+
 import axios from "axios";
+import { Url } from "../../constants/global";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
