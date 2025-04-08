@@ -89,8 +89,9 @@ function Navbar(props) {
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="main-navigation">
-          <ul class="navbar-nav">
+          <b><ul class="navbar-nav">
             <li class="nav-item">
+           
               <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
@@ -174,7 +175,7 @@ function Navbar(props) {
             }
 
             
-          </ul>
+          </ul></b>
         </div>
       </nav>
 
