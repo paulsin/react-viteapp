@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from "react";
-import background from "../../images/background.jpg";
-import housebackground from "../../images/housebackground.jpg";
-import sunrise from "../../images/sunrise.jpg";
 
-import Navbar from "../common/NavbarPublic";
-import Footer from "../common/Footer"
-import NavbarPublic from "../common/NavbarPublic";
+
+
 
 // import { MultiSelect } from "react-multi-select-component";
 // import Multiselect from 'multiselect-react-dropdown';
 import axios from "axios";
 import { Url } from "../../constants/global";
 import { baseUrl} from "../../constants/global";
-import Select from 'react-select';
 
-import Pagination from "./Pagination";
-import { propertyTypes } from "../../constants/global";
-import { transactionType } from "../../constants/global";
-import { NoImage } from "../../constants/global";
+
+
 import { Link, useNavigate, useParams } from "react-router-dom";
 import QRCode from 'react-qr-code';
 
@@ -72,7 +65,7 @@ function fetchPropertyImages(){
   })
 }
 
-  let temparray=[background,housebackground,sunrise]
+
   
   useEffect(() => {
     fetchPropertyImages();

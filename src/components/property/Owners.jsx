@@ -1,18 +1,16 @@
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+const Navbar = React.lazy(() => import("../common/Navbar"));
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import Loading from "../common/Loading";
+
 //import Functions from "../common/Functions";
-import { fetchLoggedDataCommon } from "../common/Functions";
-import AddProperty from "./AddProperty";
-import PaginationforOwnersList from "./PaginationforOwnersList";
 
 
+
+const PaginationforOwnersList = React.lazy(() => import("./PaginationforOwnersList"));
 
 
 var newUrl = Url + 'accounts/logInFunction';
@@ -184,7 +182,7 @@ const Owners = () => {
     return(
 
         <div>
-        <Navbar />
+        <Suspense><Navbar/></Suspense>
 
         <div>
           <div class="row mb-3 p-4">
@@ -355,8 +353,8 @@ const Owners = () => {
                 </td>
               </tbody>
           </table>  
-          <PaginationforOwnersList totalPosts={ownersTable.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
-            currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/>
+          <Suspense><PaginationforOwnersList totalPosts={ownersTable.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
+            currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/></Suspense>
         </div>
       </div>
     

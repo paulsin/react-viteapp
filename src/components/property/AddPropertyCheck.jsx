@@ -1,16 +1,14 @@
-
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
-import Loading from "../common/Loading";
+const Loading= React.lazy(() => import("../common/Loading"));
+const AddProperty = React.lazy(() => import("./AddProperty"));
+
 //import Functions from "../common/Functions";
 import { fetchLoggedDataCommon } from "../common/Functions";
-import AddProperty from "./AddProperty";
+
 
 
 
@@ -30,7 +28,7 @@ const AddPropertyCheck = () => {
     const [data, setData] = useState([]);
     const [buttonLabel, setButtonLabel] = useState("Submit");
 //    const [dataCheckFlag, setDataCheckFlag] = useState(0);
-    const [selectedDIV, setSelectedDIV] = useState(<Loading/>);
+    const [selectedDIV, setSelectedDIV] = useState(<Suspense><Loading/></Suspense>);
 
     ///   For navigate function
     const navigate = useNavigate();
@@ -60,7 +58,7 @@ const AddPropertyCheck = () => {
           //navigate('/frontend/profile');
            //alert("pAUL")
          
-              setSelectedDIV(<AddProperty/>);
+              setSelectedDIV(<Suspense><AddProperty/></Suspense>);
      
          
               

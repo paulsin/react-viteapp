@@ -1,21 +1,24 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+
 import { Url } from "../../constants/global";
 import axios from "axios";
+
 import { useState, useEffect } from "react";
 import {   Link,useNavigate, useParams } from "react-router-dom";
-import Loading from "../common/Loading";
-import SignUp from "./SignUp";
-//import { Login } from "react-admin";
-import NotAuthorized from "../common/NotAuthorized";
+const Loading = React.lazy(() => import("../common/Loading"));
+const SignUp = React.lazy(() => import("./SignUp"));
+
+
+const NotAuthorized = React.lazy(() => import("../common/NotAuthorized"));
+
 
 var newUrl = Url + 'accounts/person';
 
 var loggedCheckUrl = Url + 'accounts/loggedInUser';
 
 const SignUpCheck = () => {
+
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -30,7 +33,7 @@ const SignUpCheck = () => {
     const [emailBoxStatus, setEmailBoxStatus] = useState(false);
 //    const [dataCheckFlag, setDataCheckFlag] = useState(0);
 
-    const [selectedDIV, setSelectedDIV] = useState(<Loading/>);
+    const [selectedDIV, setSelectedDIV] = useState(<Suspense><Loading/></Suspense>);
     
 
     ///   For navigate function
@@ -56,14 +59,14 @@ const SignUpCheck = () => {
               //navigate('/frontend/profile');
             if(response.data.userRole == "owner") {
               if(newID) {
-                setSelectedDIV(<SignUp newID={newID}/>);
+                setSelectedDIV(<Suspense><SignUp newID={newID}/></Suspense>);
               }
               else {
-                setSelectedDIV(<SignUp newID=""/>);
+                setSelectedDIV(<Suspense><SignUp newID=""/></Suspense>);
               }
             }
             else {
-              setSelectedDIV(<NotAuthorized />);
+              setSelectedDIV(<Suspense><NotAuthorized/></Suspense>);
             }
           }
           else {

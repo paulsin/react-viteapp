@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import background from "../../images/background.jpg";
+
 import axios from "axios";
 import { Url } from "../../constants/global";
 import { Link, useNavigate, useParams } from "react-router-dom";

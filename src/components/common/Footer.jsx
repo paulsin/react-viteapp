@@ -1,5 +1,6 @@
-import React from 'react'
-import WhatsAppWhite from '../../assets/icons/whatsapp-white.svg?react';
+import React, { Suspense } from "react";
+const WhatsAppWhite = React.lazy(() => import('../../assets/icons/whatsapp-white.svg?react'));
+
 import { Mail } from 'lucide-react';
 import { MapPin } from 'lucide-react';
 import { Phone } from 'lucide-react';
@@ -28,7 +29,7 @@ function Footer() {
                   <div id="linktagsinfooter">
                           <Phone size={22} className="text-black-500" />&nbsp;&nbsp;&nbsp;+91 - 9188 338 732<br/><br/>
                          
-                          <WhatsAppWhite className="text-white-500"  width={18} height={18}/>&nbsp;&nbsp;&nbsp;+91 - 9188 338 732<br/><br/>
+                          <Suspense><WhatsAppWhite className="text-white-500"  width={18} height={18}/> &nbsp;&nbsp;&nbsp;+91 - 9188 338 732<br/><br/></Suspense>
                           <Mail size={22} className="text-black-600" />&nbsp;&nbsp;agentfreedeal@gmail.com<br/><br/>
                           <MapPin size={20} className="text-black-500" />&nbsp;&nbsp;&nbsp;Kochi, Kerala, India
                   </div>

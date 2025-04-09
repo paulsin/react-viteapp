@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React,{Suspense ,useState, useEffect } from "react";
 import background from "../../images/background.jpg";
 
-import Navbar from "../common/NavbarPublic";
-import Footer from "../common/Footer"
+const Footer = React.lazy(() => import('../common/Footer'));
+const AppNavbar= React.lazy(() => import("../common/AppNavbar"));
+const Pagination= React.lazy(() => import("./Pagination"));
+
 
 import { Search } from 'lucide-react';
 
@@ -12,7 +14,7 @@ import { Url } from "../../constants/global";
 import Select from 'react-select';
 
 
-import Pagination from "./Pagination";
+
 import { propertyTypes } from "../../constants/global";
 import { transactionType } from "../../constants/global";
 import { NoImage } from "../../constants/global";
@@ -21,7 +23,7 @@ import { neworOldType } from "../../constants/global";
 import { pricefromSelect } from "../../constants/global";
 import { pricetoSelect } from "../../constants/global";
 import { priceRangeSelect } from "../../constants/global";
-import AppNavbar from "../common/AppNavbar";
+;
 
 
 function Home() {
@@ -759,7 +761,7 @@ const handleSelectedPropertyType = (e) => {
   }
   return(
       <div>
-        <AppNavbar />
+        <Suspense> <AppNavbar /></Suspense>
         <header class="page-header header container-fluid-full mx-auto p-3">
           <div className='container p-4' id="searchpropclass" >
                 {/* <div className='w-50 bg-white rounded p-3'> */}
@@ -933,8 +935,8 @@ const handleSelectedPropertyType = (e) => {
         </header>
 
         <div class="container pt-4 pb-4" >
-          <Pagination totalPosts={propertydetails.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
-          currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/>
+        <Suspense> <Pagination totalPosts={propertydetails.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
+          currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/></Suspense>
         
            
           <div>
@@ -1090,11 +1092,11 @@ const handleSelectedPropertyType = (e) => {
             
           </div> 
           <div class ="pt-3 p-0">
-            <Pagination totalPosts={propertydetails.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
-            currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/>  </div>
+          <Suspense><Pagination totalPosts={propertydetails.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
+            currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/></Suspense>   </div>
         </div>
    
-        <Footer/>
+          <Suspense><Footer/></Suspense> 
     
       </div>
     )

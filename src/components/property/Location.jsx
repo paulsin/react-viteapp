@@ -1,18 +1,17 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+const Navbar = React.lazy(() => import("../common/Navbar"));
 import { Url } from "../../constants/global";
-import axios from "axios";
+
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Select from "react-select";
+
 import { propertyTypes } from "../../constants/global";
 import { transactionType } from "../../constants/global";
-import data from "../../json/places.json"
-import { useConfirm } from "material-ui-confirm";
-import StatesList from "./StatesList";
-import DistrictsList from "./DistrictsList";
+;
+const StatesList = React.lazy(() => import("./StatesList"));
+
+
 
 var newUrl = Url + 'location/state';
 var addDistrictUrl = Url + 'location/district';
@@ -39,7 +38,7 @@ const Location = (props) => {
     useEffect(() => {
 
 
-        setSelectedLocation(<StatesList />);
+        setSelectedLocation(<Suspense><StatesList /></Suspense>);
 
     }, []);
 
@@ -49,7 +48,7 @@ const Location = (props) => {
 
     <div>
 
-        <Navbar />
+        <Suspense><Navbar /></Suspense>
 
 
         <div class="container mt-3">

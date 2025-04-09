@@ -1,17 +1,16 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+const Loading = React.lazy(() => import("../common/Loading"));
+const PropertyCustomerRequestForOwner = React.lazy(() => import("./PropertyCustomerRequestForOwner"));
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import Loading from "../common/Loading";
-//import Functions from "../common/Functions";
-import { fetchLoggedDataCommon } from "../common/Functions";
-import AddProperty from "./AddProperty";
-import PropertyCustomerRequestForOwner from "./PropertyCustomerRequestForOwner";
+
+
+
+
 
 
 
@@ -30,7 +29,7 @@ const PropertyCustomerRequestForOwnerCheck = () => {
     const [data, setData] = useState([]);
     const [buttonLabel, setButtonLabel] = useState("Submit");
 //    const [dataCheckFlag, setDataCheckFlag] = useState(0);
-    const [selectedDIV, setSelectedDIV] = useState(<Loading/>);
+    const [selectedDIV, setSelectedDIV] = useState(<Suspense><Loading/></Suspense>);
 
     ///   For navigate function
     const navigate = useNavigate();
@@ -60,7 +59,7 @@ const PropertyCustomerRequestForOwnerCheck = () => {
           //navigate('/frontend/profile');
           //  alert(operation)
           // if(param1==="table" && param2==="table"){
-            setSelectedDIV(<PropertyCustomerRequestForOwner param1={param1} param2={param2}/>);
+            setSelectedDIV(<Suspense><PropertyCustomerRequestForOwner param1={param1} param2={param2}/></Suspense>);
           // }
           // else if(param1==="propertyID"){
           //   alert("jjjj")
