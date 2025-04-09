@@ -50,6 +50,8 @@ function Home() {
   const[propertydetails,setPropertydetails]=useState([])
   const [propertyWidget, setPropertyWidget] = useState("");
   const [propertyimagename, setPropertyimagename] = useState("");
+  const [alertclass, setAlertClass] = useState("alert alert-info");
+  const [alertContent, setAlertContent] = useState("Search Properties");
 
  
   // https://youtu.be/wAGIOCqS8tk?si=f-i1ayZt50pg0u04
@@ -346,10 +348,13 @@ const handleSelectedPropertyType = (e) => {
 
   function searchdataout(data,data1,data2,transdata,pricefromdata,pricetodata,neworolddata,pricerangedata,propertytypedata,statedata,districtdata,towndata,Iddata){
     //alert(propertytypedata)
+    setAlertContent("Search Properties");
+    setAlertClass("alert alert-info");
     const toWords = new ToWords();
     let index=0
     let operatearray=[]
     let temparray=[]
+
     data.map(row => {
       operatearray.push({
                         'propertyID' : row._id,
@@ -634,29 +639,32 @@ const handleSelectedPropertyType = (e) => {
     }
     if(Iddata!=""){   
       //alert("HAIII")
-      operatearray.map(row10 => {
-        //alert(Iddata)
-        if(row10.id === Iddata){
-                  temparray.push({
-                          'propertyID':row10.propertyID,
-                          'id':row10.id,
-                          'individualPropertyUrl':row10.individualPropertyUrl,
-                          'propertyType':row10.propertyType,
-                          'transactionType':row10.transactionType,
-                          'stateID':row10.stateID,
-                          'districtID':row10.districtID,
-                          'townID':row10.townID,
-                          'thumbnailimage':row10.thumbnailimage,
-                          'thumbnailimagename':row10.humbnailimagename,
-                          'builtArea':row10.builtArea,
-                          'price':row10.price,
-                          'cost':row10.cost===undefined?row10.cost:row10.cost,
-                          'newOrOld':row10.newOrOld,
-                          'propertyEditDate':row10.propertyEditDate,
-                          'imageurl':row10.imageurl
-                  })
-        }   
-      })
+      const matchedItem = operatearray.find(row10 => row10.id === Iddata);
+      // alert("haiii")
+      if (matchedItem) {
+        temparray.push({
+          propertyID: matchedItem.propertyID,
+          id: matchedItem.id,
+          individualPropertyUrl: matchedItem.individualPropertyUrl,
+          propertyType: matchedItem.propertyType,
+          transactionType: matchedItem.transactionType,
+          stateID: matchedItem.stateID,
+          districtID: matchedItem.districtID,
+          townID: matchedItem.townID,
+          thumbnailimage: matchedItem.thumbnailimage,
+          thumbnailimagename: matchedItem.thumbnailimagename,
+          builtArea: matchedItem.builtArea,
+          price: matchedItem.price,
+          cost: matchedItem.cost === undefined ? matchedItem.cost : matchedItem.cost,
+          newOrOld: matchedItem.newOrOld,
+          propertyEditDate: matchedItem.propertyEditDate,
+          imageurl: matchedItem.imageurl
+        });
+      } 
+      else {
+      setAlertContent("Such an Id doesn't exist");
+      setAlertClass("alert alert-danger");
+  }
       operatearray=[];
       operatearray=temparray;
       temparray=[];
@@ -696,6 +704,7 @@ const handleSelectedPropertyType = (e) => {
     operatearray=temparray;
     temparray=[];
     setPropertydetails(operatearray)
+    
   }
   
 
@@ -763,10 +772,15 @@ const handleSelectedPropertyType = (e) => {
       <div>
         <Suspense> <AppNavbar /></Suspense>
         <header class="page-header header container-fluid-full mx-auto p-3">
+        
           <div className='container p-4' id="searchpropclass" >
                 {/* <div className='w-50 bg-white rounded p-3'> */}
             <form>
-              <div className="row mx-auto p-3" id="searchpropclass">
+            <center><div class={alertclass} role="alert" >
+                 <h3>{alertContent}</h3> 
+              </div></center>
+              <div className="row mx-auto p-3" >
+              
                 <div className="col-sm-4">  
                   <h5><b>Search Property By ID</b></h5>
                 </div>
@@ -776,7 +790,7 @@ const handleSelectedPropertyType = (e) => {
                 </div>
                 <div className="col-sm-4"></div>
               </div>
-
+              
               <br/>
               <div className="row" >
                 <div className="col-md-3"> 
