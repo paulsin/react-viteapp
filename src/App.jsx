@@ -1,12 +1,11 @@
 import { useState } from 'react'
 
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 //  import './App.css'
 import './custom/custom.css';
 import './custom/anju.css';
 import './custom/paulsin.css';
-import background from './images/background.jpg';
+
 import {
   Route,
   BrowserRouter,
@@ -14,9 +13,9 @@ import {
 } from 'react-router-dom';
  import Test from './components/accounts/Test';
  import Home from './components/public/Home';
- import SignUp from './components/accounts/SignUp';
 
- import ListUsersCustomTable from './components/accounts/ListUsersCustomTable';
+
+ 
  import Login from './components/accounts/Login';
  import ProfileCheck from './components/accounts/ProfileCheck';
  import SignUpCheck from './components/accounts/SignUpCheck';
