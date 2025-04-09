@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import { propertyTypes } from "../../constants/global";
 import Select from 'react-select';
 

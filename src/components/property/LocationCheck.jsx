@@ -1,20 +1,19 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+const Navbar = React.lazy(() => import("../common/Navbar"));
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
-import Loading from "../common/Loading";
-//import Functions from "../common/Functions";
-import { fetchLoggedDataCommon } from "../common/Functions";
-// import AddProperty from "./AddProperty";
-import Location from "./Location";
-import StatesList from "./StatesList";
-import DistrictsList from "./DistrictsList";
-import TownsList from "./TownsList";
+const Loading = React.lazy(() => import("../common/Loading"));
+
+const StatesList = React.lazy(() => import("./StatesList"));
+const DistrictsList  = React.lazy(() => import("./DistrictsList"));
+const TownsList= React.lazy(() => import("./TownsList"));
+
+
+
 
 var newUrl = Url + 'accounts/logInFunction';
 var loggedCheckUrl = Url + 'accounts/loggedInUser';
@@ -30,7 +29,7 @@ const LocationCheck = (props) => {
     const [data, setData] = useState([]);
     const [buttonLabel, setButtonLabel] = useState("Submit");
 //    const [dataCheckFlag, setDataCheckFlag] = useState(0);
-    const [selectedDIV, setSelectedDIV] = useState(<Loading/>);
+    const [selectedDIV, setSelectedDIV] = useState(<Suspense><Loading/></Suspense>);
 
     ///   For navigate function
     const navigate = useNavigate();
@@ -55,13 +54,13 @@ const LocationCheck = (props) => {
       //alert(response.data.password)
         if(response.data.username && response.data.password) {
           if(locationType == "statesList") {
-            setSelectedDIV(<StatesList countryName={countryName} />);
+            setSelectedDIV(<Suspense><StatesList countryName={countryName} /></Suspense>);
           }
           else if(locationType == "districtsList") {
-            setSelectedDIV(<DistrictsList countryName={countryName} stateName={stateName}/>);
+            setSelectedDIV(<Suspense><DistrictsList countryName={countryName} stateName={stateName}/></Suspense>);
           }
           else if(locationType == "townsList") {
-            setSelectedDIV(<TownsList countryName={countryName} stateName={stateName} districtName={districtName}/>);
+            setSelectedDIV(<Suspense><TownsList countryName={countryName} stateName={stateName} districtName={districtName}/></Suspense>);
           }
         }
         else {
@@ -93,16 +92,17 @@ const LocationCheck = (props) => {
 
       <div>
 
-      <Navbar />
+      
+        <Suspense><Navbar /></Suspense>
 
 
-      <div>
-          {/* <h2>Location</h2> */}
-          <br/>
+        <div>
+            {/* <h2>Location</h2> */}
+            <br/>
 
-          {selectedDIV}
-        
-      </div>
+            {selectedDIV}
+          
+        </div>
 
 
 

@@ -1,20 +1,18 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
+import React, { Suspense } from "react";
+
+
 // import AppNavbar from "../common/AppNavbar";
-import Navbar from "../common/Navbar";
+const Navbar = React.lazy(() => import("../common/Navbar"));
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Select from "react-select";
-import { propertyTypes } from "../../constants/global";
-import { transactionType } from "../../constants/global";
+
 
 import { useConfirm } from "material-ui-confirm";
-import StatesList from "./StatesList";
-import DistrictsList from "./DistrictsList";
-import PaginationforProperties from "./PaginationforProperties";
+const PaginationforProperties= React.lazy(() => import("./PaginationforProperties"));
+
 import { NoImage } from "../../constants/global";
 
 var newUrl = Url + 'location/state';
@@ -163,7 +161,7 @@ const Properties = (props) => {
     return(
       <div>
 
-        <Navbar />
+        <Suspense><Navbar/></Suspense>
         {/* <AppNavbar/> */}
           <div>
             <div class="row mb-3 p-4">
@@ -272,8 +270,8 @@ const Properties = (props) => {
                 </tbody>
                 </table>  
             </div>
-            <PaginationforProperties totalPosts={propertiesTable.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
-            currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/> 
+            <Suspense><PaginationforProperties totalPosts={propertiesTable.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
+            currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/> </Suspense>
           </div>
       </div>
     )

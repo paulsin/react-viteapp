@@ -1,24 +1,20 @@
 
-import React from "react";
-import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+import React, { Suspense } from "react";
+
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link, useNavigate, useParams} from "react-router-dom";
 import Select from "react-select";
-import { propertyTypes } from "../../constants/global";
-import { transactionType } from "../../constants/global";
 
-import { useConfirm } from "material-ui-confirm";
-import StatesList from "./StatesList";
-import DistrictsList from "./DistrictsList";
-import PaginationforProperties from "./PaginationforProperties";
+
+
 import { NoImage } from "../../constants/global";
-import Loading from "../common/Loading";
-import PropertyCustomerRequestForOwnerMobilenumberRequestHistory from "./PropertyCustomerRequestForOwnerMobilenumberRequestHistory";
-import PropertyCustomerRequestForOwnerPropertyIDRequestHistory from "./PropertyCustomerRequestForOwnerPropertyIDRequestHistory";
-import PaginationforPropertyCustomerRequest from "./PaginationforPropertyCustomerRequest";
+const Loading = React.lazy(() => import("../common/Loading"));
+const PropertyCustomerRequestForOwnerMobilenumberRequestHistory = React.lazy(() => import("./PropertyCustomerRequestForOwnerMobilenumberRequestHistory"));
+const PropertyCustomerRequestForOwnerPropertyIDRequestHistory = React.lazy(() => import("./PropertyCustomerRequestForOwnerPropertyIDRequestHistory"));
+const PaginationforPropertyCustomerRequest = React.lazy(() => import("./PaginationforPropertyCustomerRequest"));
+
+
 
 var newUrl = Url + 'location/state';
 var addDistrictUrl = Url + 'location/district';
@@ -56,8 +52,8 @@ const statusoptions = [
   //alert(lastpostIndex);
     const currentposts=requestsTable.slice(firstpostIndex,lastpostIndex);
 
-  const [selectedDIV, setSelectedDIV] = useState(<Loading/>);
-   var param1=props.param1;
+  const [selectedDIV, setSelectedDIV] = useState(<Suspense><Loading/></Suspense>);
+  var param1=props.param1;
    var param2=props.param2;
 
   var param1State = props.param1State;
@@ -192,10 +188,10 @@ const statusoptions = [
                 
                 if(param1==="propertyID"){
                   // alert("jjjj")
-                  setSelectedDIV(<PropertyCustomerRequestForOwnerPropertyIDRequestHistory param2={param2} />);
+                  setSelectedDIV(<Suspense><PropertyCustomerRequestForOwnerPropertyIDRequestHistory param2={param2} /></Suspense>);
                 }
                 else if(param1==="phonenumber"){
-                  setSelectedDIV(<PropertyCustomerRequestForOwnerMobilenumberRequestHistory param2={param2} />);
+                  setSelectedDIV(<Suspense><PropertyCustomerRequestForOwnerMobilenumberRequestHistory param2={param2} /></Suspense>);
                 }
       fetchRequests();
     }, []);
@@ -408,8 +404,8 @@ const statusoptions = [
                 </td>
               </tbody>
           </table>  
-          <PaginationforPropertyCustomerRequest totalPosts={requestsTable.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
-            currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/>
+         <Suspense> <PaginationforPropertyCustomerRequest totalPosts={requestsTable.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
+            currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/></Suspense>
         </div>
       </div>
     )

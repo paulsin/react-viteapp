@@ -1,7 +1,6 @@
-
-import React from "react";
+import React, { Suspense } from "react";
 import background from "../../images/background.jpg";
-import Navbar from "../common/Navbar";
+const Navbar = React.lazy(() => import("../common/Navbar"));
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -13,12 +12,13 @@ import { PropertyStatusOptions } from "../../constants/global";
 
 import { ProgressBar } from "react-bootstrap";
 import Compressor from 'compressorjs';
-import AddPropertyTypesAsComponent from "./AddPropertyTypesAsComponent";
-import AddPropertyTransactionTypeAsComponent from "./AddPropertyTransactionTypeAsComponent";
-import AddPropertyStatesAsComponent from "./AddPropertyStatesAsComponent";
-import AddPropertyDistrictsAsComponent from "./AddPropertyDistrictsAsComponent";
-import AddPropertyTownsAsComponent from "./AddPropertyTownsAsComponent";
-import AddPropertyAttributesAsComponent from "./AddPropertyAttributesAsComponent";
+const AddPropertyTypesAsComponent = React.lazy(() => import("./AddPropertyTypesAsComponent"));
+const AddPropertyTransactionTypeAsComponent = React.lazy(() => import("./AddPropertyTransactionTypeAsComponent"));
+const AddPropertyStatesAsComponent = React.lazy(() => import("./AddPropertyStatesAsComponent"));
+const AddPropertyDistrictsAsComponent = React.lazy(() => import("./AddPropertyDistrictsAsComponent"));
+const AddPropertyTownsAsComponent = React.lazy(() => import("./AddPropertyTownsAsComponent"));
+const AddPropertyAttributesAsComponent  = React.lazy(() => import("./AddPropertyAttributesAsComponent"));
+
 
 // import { setSubmissionErrors } from "react-admin";
 import { neworOldType } from "../../constants/global";
@@ -774,9 +774,7 @@ useEffect(() => {
     return(
 
     <div>
-
-        <Navbar />
-
+        <Suspense><Navbar /></Suspense>
 
         <div class="container mt-3">
 
@@ -791,7 +789,9 @@ useEffect(() => {
                 <label for="inputPassword3" class="col-sm-2 col-form-label">Property type</label>
 
                 <div class="col-sm-5">
-                  <AddPropertyTypesAsComponent setPropertyTypeSelected={setPropertyTypeSelected} propertyTypeSelected={propertyTypeSelected} operation={operation} />
+                  <Suspense>
+                    <AddPropertyTypesAsComponent setPropertyTypeSelected={setPropertyTypeSelected} propertyTypeSelected={propertyTypeSelected} operation={operation} />
+                  </Suspense> 
                 </div>
 
             </div>
@@ -801,8 +801,9 @@ useEffect(() => {
                 <label for="inputPassword3" class="col-sm-2 col-form-label">Sale / Rent</label>
 
                 <div class="col-sm-5">
-                 
-                  <AddPropertyTransactionTypeAsComponent setTransactionTypeSelected={setTransactionTypeSelected} transactionTypeSelected={transactionTypeSelected} operation={operation}/>
+                  <Suspense>
+                    <AddPropertyTransactionTypeAsComponent setTransactionTypeSelected={setTransactionTypeSelected} transactionTypeSelected={transactionTypeSelected} operation={operation}/>
+                  </Suspense> 
                 </div>
             </div>
        
@@ -810,10 +811,12 @@ useEffect(() => {
                 <label for="inputPassword3" class="col-sm-2 col-form-label">State</label>
 
                 <div class="col-sm-5">
-                  <AddPropertyStatesAsComponent stateOptions={stateOptions} setStateNameSelectedID={setStateNameSelectedID} setStateSelectedLabel={setStateSelectedLabel} 
-                  setStateSelectedValue={setStateSelectedValue} stateSelectedLabel={stateSelectedLabel} stateSelectedValue={stateSelectedValue}
-                  districtOptionsOriginal={districtOptionsOriginal} setDistrictOptions={setDistrictOptions} operation={operation} setDistrictSelectedLabel={setDistrictSelectedLabel} 
-                  setDistrictSelectedValue={setDistrictSelectedValue} setTownSelectedLabel={setTownSelectedLabel} setTownSelectedValue={setTownSelectedValue} />
+                  <Suspense>
+                    <AddPropertyStatesAsComponent stateOptions={stateOptions} setStateNameSelectedID={setStateNameSelectedID} setStateSelectedLabel={setStateSelectedLabel} 
+                    setStateSelectedValue={setStateSelectedValue} stateSelectedLabel={stateSelectedLabel} stateSelectedValue={stateSelectedValue}
+                    districtOptionsOriginal={districtOptionsOriginal} setDistrictOptions={setDistrictOptions} operation={operation} setDistrictSelectedLabel={setDistrictSelectedLabel} 
+                    setDistrictSelectedValue={setDistrictSelectedValue} setTownSelectedLabel={setTownSelectedLabel} setTownSelectedValue={setTownSelectedValue} />
+                  </Suspense> 
 
                 </div>
             </div>
@@ -840,10 +843,12 @@ useEffect(() => {
              
                 <div class="col-sm-5">
                 {/* {districtwidget} */}
+                <Suspense>
                   <AddPropertyDistrictsAsComponent districtOptions={districtOptions} setDistrictNameSelectedID={setDistrictNameSelectedID} setDistrictSelectedLabel={setDistrictSelectedLabel} setDistrictSelectedValue={setDistrictSelectedValue}
                   townOptionsOriginal={townOptionsOriginal} setTownOptions={setTownOptions} setStateNameSelectedID={setStateNameSelectedID} stateNameSelectedID={stateNameSelectedID} operation={operation} districtSelectedLabel={districtSelectedLabel}
                    districtSelectedValue={districtSelectedValue} setTownSelectedLabel={setTownSelectedLabel} setTownSelectedValue={setTownSelectedValue}
                    />
+                </Suspense>
                 </div>
             </div>
 
@@ -868,8 +873,10 @@ useEffect(() => {
 
                 <div class="col-sm-5">
                   {/* {townwidget} */}
-                  <AddPropertyTownsAsComponent townOptions={townOptions} setTownNameSelectedID={setTownNameSelectedID} setTownSelectedLabel={setTownSelectedLabel} setTownSelectedValue={setTownSelectedValue}
-                  operation={operation} townSelectedLabel={townSelectedLabel} townSelectedValue={townSelectedValue}/>
+                  <Suspense>
+                    <AddPropertyTownsAsComponent townOptions={townOptions} setTownNameSelectedID={setTownNameSelectedID} setTownSelectedLabel={setTownSelectedLabel} setTownSelectedValue={setTownSelectedValue}
+                    operation={operation} townSelectedLabel={townSelectedLabel} townSelectedValue={townSelectedValue}/>
+                  </Suspense>
                 </div>
             </div>
 
@@ -917,30 +924,31 @@ useEffect(() => {
             </div>
    
       
-
-            <AddPropertyAttributesAsComponent setPropertyTypeSelected={setPropertyTypeSelected} propertyTypeSelected={propertyTypeSelected} operation={operation} 
-            setAlertContent={setAlertContent } setAlertClass={setAlertClass} transactionTypeSelected={transactionTypeSelected} newOrOld={newOrOld} setNeworOld={setNeworOld} stateNameSelectedID={stateNameSelectedID} districtNameSelectedID={districtNameSelectedID} 
-            townNameSelectedID={townNameSelectedID} localityName={localityName} cost={cost} stateSelectedValue={stateSelectedValue} districtSelectedValue={districtSelectedValue} townSelectedValue={townSelectedValue} uniqueID={uniqueID}
-            setFacingPolarity={setFacingPolarity} setTotalNumberOfFloors={setTotalNumberOfFloors} setPlotArea={setPlotArea} setBuiltArea={setBuiltArea}
-            setTotalVillas={setTotalVillas} setFloorNumber={setFloorNumber} setBedRooms={setBedRooms} setBedRoomsWithToilet={setBedRoomsWithToilet}
-            setToilets={setToilets} setCarPorch={setCarPorch} setCarParking={setCarParking} setSitOut={setSitOut} setLivingArea={setLivingArea}
-            setDiningHall={setDiningHall} setKitchen={setKitchen} setWorkArea={setWorkArea} setUpperLivingArea={setUpperLivingArea} setBalcony={setBalcony}
-            setOpenTerrace={setOpenTerrace} setWaterWell={setWaterWell} setWaterConnection={setWaterConnection} facing={facing} totalNumberOfFloors={totalNumberOfFloors} plotarea={plotarea} builtArea={builtArea}
-            totalVillas={totalVillas} floorNumber={floorNumber} bedRooms={bedRooms} bedRoomsWithToilet={bedRoomsWithToilet} toilets={toilets} carPorch={carPorch} carParking={carParking}
-            sitOut={sitOut} livingArea={livingArea} diningHall={diningHall} kitchen={kitchen} workArea={workArea} upperLivingArea={upperLivingArea}
-            balcony={balcony} openTerrace={openTerrace} waterWell={waterWell} waterConnection={waterConnection}
-            setCarporchStatusChecked={setCarporchStatusChecked}  setSitoutStatusChecked={setSitoutStatusChecked} setLivingareaStatusChecked={setLivingareaStatusChecked} setDininghallStatusChecked={setDininghallStatusChecked}
-            setKitchenStatusChecked={setKitchenStatusChecked} setWorkareaStatusChecked={setWorkareaStatusChecked} setUpperlivingareaStatusChecked={setUpperlivingareaStatusChecked} setBalconyStatusChecked={setBalconyStatusChecked}
-            setOpenterraceStatusChecked={setOpenterraceStatusChecked} setWaterwellStatusChecked={setWaterwellStatusChecked} setWaterconnectionStatusChecked={setWaterconnectionStatusChecked}
-            carporchStatusChecked={carporchStatusChecked} sitoutStatusChecked={sitoutStatusChecked} livingareaStatusChecked={livingareaStatusChecked} dininghallStatusChecked={dininghallStatusChecked}
-            kitchenStatusChecked={kitchenStatusChecked} workareaStatusChecked={workareaStatusChecked} upperlivingareaStatusChecked={upperlivingareaStatusChecked}
-            balconyStatusChecked={balconyStatusChecked} openterraceStatusChecked={openterraceStatusChecked} waterwellStatusChecked={waterwellStatusChecked} waterconnectionStatusChecked={waterconnectionStatusChecked}
-            costtypeStatusChecked={costtypeStatusChecked} setCosttypeStatusChecked={setCosttypeStatusChecked} googlemap={googlemap} videolink={videolink} propertyTitle={propertyTitle} propertyfeature1={propertyfeature1} propertyfeature2={propertyfeature2}
-            propertyfeature3={propertyfeature3} propertyfeature4={propertyfeature4} setGooglemap={setGooglemap} setVideolink={setVideolink} setPropertyTitle={setPropertyTitle} setPropertyFeature1={setPropertyFeature1}
-            setPropertyFeature2={setPropertyFeature2} setPropertyFeature3={setPropertyFeature3} setPropertyFeature4={setPropertyFeature4} owneroptions={owneroptions}
-            ownerSelectedLabel={ownerSelectedLabel} ownerSelectedValue={ownerSelectedValue} setOwnerSelectedLabel={setOwnerselectedLabel} setOwnerSelectedValue={setOwnerselectedValue} setOwneroptions={setOwneroptions}
-            propertyStatus={propertyStatus} setPropertystatus={setPropertystatus} numbercount={numbercount} setNumberCount={setNumberCount} 
-            />  
+            <Suspense>
+              <AddPropertyAttributesAsComponent setPropertyTypeSelected={setPropertyTypeSelected} propertyTypeSelected={propertyTypeSelected} operation={operation} 
+              setAlertContent={setAlertContent } setAlertClass={setAlertClass} transactionTypeSelected={transactionTypeSelected} newOrOld={newOrOld} setNeworOld={setNeworOld} stateNameSelectedID={stateNameSelectedID} districtNameSelectedID={districtNameSelectedID} 
+              townNameSelectedID={townNameSelectedID} localityName={localityName} cost={cost} stateSelectedValue={stateSelectedValue} districtSelectedValue={districtSelectedValue} townSelectedValue={townSelectedValue} uniqueID={uniqueID}
+              setFacingPolarity={setFacingPolarity} setTotalNumberOfFloors={setTotalNumberOfFloors} setPlotArea={setPlotArea} setBuiltArea={setBuiltArea}
+              setTotalVillas={setTotalVillas} setFloorNumber={setFloorNumber} setBedRooms={setBedRooms} setBedRoomsWithToilet={setBedRoomsWithToilet}
+              setToilets={setToilets} setCarPorch={setCarPorch} setCarParking={setCarParking} setSitOut={setSitOut} setLivingArea={setLivingArea}
+              setDiningHall={setDiningHall} setKitchen={setKitchen} setWorkArea={setWorkArea} setUpperLivingArea={setUpperLivingArea} setBalcony={setBalcony}
+              setOpenTerrace={setOpenTerrace} setWaterWell={setWaterWell} setWaterConnection={setWaterConnection} facing={facing} totalNumberOfFloors={totalNumberOfFloors} plotarea={plotarea} builtArea={builtArea}
+              totalVillas={totalVillas} floorNumber={floorNumber} bedRooms={bedRooms} bedRoomsWithToilet={bedRoomsWithToilet} toilets={toilets} carPorch={carPorch} carParking={carParking}
+              sitOut={sitOut} livingArea={livingArea} diningHall={diningHall} kitchen={kitchen} workArea={workArea} upperLivingArea={upperLivingArea}
+              balcony={balcony} openTerrace={openTerrace} waterWell={waterWell} waterConnection={waterConnection}
+              setCarporchStatusChecked={setCarporchStatusChecked}  setSitoutStatusChecked={setSitoutStatusChecked} setLivingareaStatusChecked={setLivingareaStatusChecked} setDininghallStatusChecked={setDininghallStatusChecked}
+              setKitchenStatusChecked={setKitchenStatusChecked} setWorkareaStatusChecked={setWorkareaStatusChecked} setUpperlivingareaStatusChecked={setUpperlivingareaStatusChecked} setBalconyStatusChecked={setBalconyStatusChecked}
+              setOpenterraceStatusChecked={setOpenterraceStatusChecked} setWaterwellStatusChecked={setWaterwellStatusChecked} setWaterconnectionStatusChecked={setWaterconnectionStatusChecked}
+              carporchStatusChecked={carporchStatusChecked} sitoutStatusChecked={sitoutStatusChecked} livingareaStatusChecked={livingareaStatusChecked} dininghallStatusChecked={dininghallStatusChecked}
+              kitchenStatusChecked={kitchenStatusChecked} workareaStatusChecked={workareaStatusChecked} upperlivingareaStatusChecked={upperlivingareaStatusChecked}
+              balconyStatusChecked={balconyStatusChecked} openterraceStatusChecked={openterraceStatusChecked} waterwellStatusChecked={waterwellStatusChecked} waterconnectionStatusChecked={waterconnectionStatusChecked}
+              costtypeStatusChecked={costtypeStatusChecked} setCosttypeStatusChecked={setCosttypeStatusChecked} googlemap={googlemap} videolink={videolink} propertyTitle={propertyTitle} propertyfeature1={propertyfeature1} propertyfeature2={propertyfeature2}
+              propertyfeature3={propertyfeature3} propertyfeature4={propertyfeature4} setGooglemap={setGooglemap} setVideolink={setVideolink} setPropertyTitle={setPropertyTitle} setPropertyFeature1={setPropertyFeature1}
+              setPropertyFeature2={setPropertyFeature2} setPropertyFeature3={setPropertyFeature3} setPropertyFeature4={setPropertyFeature4} owneroptions={owneroptions}
+              ownerSelectedLabel={ownerSelectedLabel} ownerSelectedValue={ownerSelectedValue} setOwnerSelectedLabel={setOwnerselectedLabel} setOwnerSelectedValue={setOwnerselectedValue} setOwneroptions={setOwneroptions}
+              propertyStatus={propertyStatus} setPropertystatus={setPropertystatus} numbercount={numbercount} setNumberCount={setNumberCount} 
+              />  
+            </Suspense>
 
           
         </div>
