@@ -21,6 +21,8 @@ var updateStateUrl = Url + 'location/updateState/';
 
 var districtsUrl = "/frontend/location/districtsList/india/";
 
+var loggedCheckUrl = Url + 'accounts/loggedInUser';
+
 const StatesList= (props) => {
 
 
@@ -35,6 +37,9 @@ const StatesList= (props) => {
 
     const [updateButtonLabel, setUpdateButtonLabel] = useState("Update");
     const [searchTerm, setSearchTerm] = useState("");
+    const[loggedinusername,setLoggedusername]=useState("");
+    const[loggedinuserid,setLoggeduserId]=useState("");
+    const[loggedinuserRole,setLoggeduserRole]=useState("");
 
     const stateOptionsArray = [];
 
@@ -135,7 +140,10 @@ const StatesList= (props) => {
         updateStateUrlTemp,
         {
           "stateName": modalStateName,    
-          "stateCode": modalStateCode
+          "stateCode": modalStateCode,
+          "donebyUserId":loggedinuserid,
+          "donebyUserName":loggedinusername,
+          "donebyUserrole":loggedinuserRole
         }     
       ); 
 
@@ -171,11 +179,47 @@ const StatesList= (props) => {
         //alert(stateID);
         //navigate("/frontend/location/districtsList/india/"+stateID);
     }
+    const fetchLoggedDataForPropertySubmission = (e) => {
+
+      //Functions();
+  
+      //alert("Paulsin");
+
+      const response = axios.get(loggedCheckUrl,
+        {withCredentials:true }
+      )
+      .then(function (response) {
+        //console.log(response);
+        setLoggedusername(response.data.username);
+        setLoggeduserRole(response.data.userRole)
+        setLoggeduserId(response.data.userID);
+        if(response.data.username && response.data.password) {
+          //alert("Logged In");
+          //navigate('/frontend/profile');
+          //setSelectedDIV(loginDIV);
+  
+          
+          //alert(response.data.userID);
+  
+          //setLoggedUserMenu(response.data.username);
+          //setLoggedUserRole(response.data.userRole);
+          setLoggedUserIDforPropertySubmission(response.data.userID);
+        }
+        //setUsername(response.data.username);
+      })
+      .catch(function (error) {
+        console.log(error);
+      }); 
+  
+    }
+
+
 
     useEffect(() => {
       //console.log('i fire once');
       //setItems(data);
       fetchStates();
+      fetchLoggedDataForPropertySubmission();
       //fetchDistricts();
 
     }, []);

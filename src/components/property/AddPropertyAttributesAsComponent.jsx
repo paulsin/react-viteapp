@@ -62,6 +62,9 @@ const AddPropertyAttributesAsComponent = ({setPropertyTypeSelected,propertyTypeS
    const [alertownerclass, setAlertOwnerClass] = useState("alert alert-info");
   const [alertOwnerContent, setAlertOwnerContent] = useState("Enter the owner details");
   const [loggedUserIDforPropertySubmission, setLoggedUserIDforPropertySubmission] = useState("");
+  const[loggedinusername,setLoggedusername]=useState("");
+  const[loggedinuserid,setLoggeduserId]=useState("");
+  const[loggedinuserRole,setLoggeduserRole]=useState("");
   //const [selectedOption, setSelectedOption] = useState(propertyStatus[1]); 
     
 
@@ -366,6 +369,9 @@ const AddPropertyAttributesAsComponent = ({setPropertyTypeSelected,propertyTypeS
                 "ownerOrBuilder": ownerorbuilderselection,
                 "name": ownername,
                 "address": owneraddress,
+                "donebyUserId":loggedinuserid,
+                "donebyUserName":loggedinusername,
+                "donebyUserrole":loggedinuserRole
               }     
             );  
              if(response.data == "both_exists") {
@@ -819,8 +825,11 @@ const AddPropertyAttributesAsComponent = ({setPropertyTypeSelected,propertyTypeS
                "propertyFeature4":propertyfeature4,
                "ownerOrBuilderID":ownerSelectedValue,
                "propertyStatus":propertyStatus,
-               "savedBy" : loggedUserIDforPropertySubmission
-               
+               "savedBy" : loggedUserIDforPropertySubmission,
+               "donebyUserId":loggedinuserid,
+                "donebyUserName":loggedinusername,
+                "donebyUserrole":loggedinuserRole
+                    
 
 
 
@@ -856,7 +865,9 @@ const AddPropertyAttributesAsComponent = ({setPropertyTypeSelected,propertyTypeS
       )
       .then(function (response) {
         //console.log(response);
-        //alert(response.data);
+        setLoggedusername(response.data.username);
+        setLoggeduserRole(response.data.userRole)
+        setLoggeduserId(response.data.userID);
         if(response.data.username && response.data.password) {
           //alert("Logged In");
           //navigate('/frontend/profile');
@@ -1296,7 +1307,10 @@ useEffect(() => {
                "propertyFeature4":propertyfeature4,
                "ownerOrBuilderID":ownerSelectedValue,
                "propertyStatus":propertyStatus,
-               "savedBy" : loggedUserIDforPropertySubmission
+               "savedBy" : loggedUserIDforPropertySubmission,
+               "donebyUserId":loggedinuserid,
+                "donebyUserName":loggedinusername,
+                "donebyUserrole":loggedinuserRole
                
     
     

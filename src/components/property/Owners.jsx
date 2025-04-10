@@ -27,6 +27,9 @@ const Owners = () => {
     const [address,setAddress]=useState("");
     const [alertClass, setAlertClass] = useState("alert alert-info");
     const [alertContent, setAlertContent] = useState("Enter the data for editing");
+    const[loggedinusername,setLoggedusername]=useState("");
+    const[loggedinuserid,setLoggeduserId]=useState("");
+    const[loggedinuserRole,setLoggeduserRole]=useState("");
     const navigate = useNavigate();
     let currentpageno=1;
       let recordsperpageno=20;
@@ -144,6 +147,9 @@ const Owners = () => {
                     "id":ownerid,
                     "name":name,
                     "address":address,
+                    "donebyUserId":loggedinuserid,
+                    "donebyUserName":loggedinusername,
+                    "donebyUserrole":loggedinuserRole
                    // "ownerStatus":"Public"
                 }
             )
@@ -178,7 +184,55 @@ const Owners = () => {
           }
         }
         
-   
+        const fetchLoggedDataForPropertySubmission = (e) => {
+
+          //Functions();
+      
+          //alert("Paulsin");
+    
+          const response = axios.get(loggedCheckUrl,
+            {withCredentials:true }
+          )
+          .then(function (response) {
+            //console.log(response);
+            setLoggedusername(response.data.username);
+            setLoggeduserRole(response.data.userRole)
+            setLoggeduserId(response.data.userID);
+            if(response.data.username && response.data.password) {
+              //alert("Logged In");
+              //navigate('/frontend/profile');
+              //setSelectedDIV(loginDIV);
+      
+              
+              //alert(response.data.userID);
+      
+              //setLoggedUserMenu(response.data.username);
+              //setLoggedUserRole(response.data.userRole);
+              setLoggedUserIDforPropertySubmission(response.data.userID);
+            }
+            //setUsername(response.data.username);
+          })
+          .catch(function (error) {
+            console.log(error);
+          }); 
+      
+        }
+    
+    
+    useEffect(() => {
+      //console.log('i fire once');
+      //setItems(data);
+    
+
+      
+      fetchLoggedDataForPropertySubmission();
+     
+    
+    
+    
+      //test();
+    
+    }, []);
     return(
 
         <div>

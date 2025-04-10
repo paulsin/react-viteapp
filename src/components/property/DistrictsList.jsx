@@ -28,6 +28,7 @@ var districtsUrl = "/frontend/location/districtsList/india/";
 var fetchStateNameFromIDurl = "/location/stateNameFromID/";
 
 var townsUrl = "/frontend/location/townsList/india/";
+var loggedCheckUrl = Url + 'accounts/loggedInUser';
 
 const DistrictsList= (props) => {
 
@@ -45,6 +46,9 @@ const DistrictsList= (props) => {
 
     const [stateNameInTable, setStateNameInTable] = useState();
     const [searchTerm, setSearchTerm] = useState("");
+    const[loggedinusername,setLoggedusername]=useState("");
+    const[loggedinuserid,setLoggeduserId]=useState("");
+    const[loggedinuserRole,setLoggeduserRole]=useState("");
 
     const districtOptionsArray = [];
 
@@ -59,7 +63,39 @@ const DistrictsList= (props) => {
     const {stateID} = useParams();
 
     //alert(stateID);
+    const fetchLoggedDataForPropertySubmission = (e) => {
 
+      //Functions();
+    
+      //alert("Paulsin");
+    
+      const response = axios.get(loggedCheckUrl,
+        {withCredentials:true }
+      )
+      .then(function (response) {
+        //alert(response.data.userID);
+        setLoggedusername(response.data.username);
+        setLoggeduserRole(response.data.userRole)
+        setLoggeduserId(response.data.userID);
+        if(response.data.username && response.data.password) {
+          //alert("Logged In");
+          //navigate('/frontend/profile');
+          //setSelectedDIV(loginDIV);
+    
+          
+          //alert(response.data.userID);
+    
+          //setLoggedUserMenu(response.data.username);
+          //setLoggedUserRole(response.data.userRole);
+          // setLoggedUserIDforPropertySubmission(response.data.userID);
+        }
+        //setUsername(response.data.username);
+      })
+      .catch(function (error) {
+        console.log(error);
+      }); 
+    
+    }
     const fetchDistricts =  async (e) => {
       try {
         const response = await axios.get(getDistrictUrl,   
@@ -152,7 +188,10 @@ const DistrictsList= (props) => {
         {
           "stateID" : stateID,
           "districtName": modalDistrictName,    
-          "districtCode": modalDistrictCode
+          "districtCode": modalDistrictCode,
+          "donebyUserId":loggedinuserid,
+          "donebyUserName":loggedinusername,
+          "donebyUserrole":loggedinuserRole
         }     
       ); 
 
@@ -222,6 +261,7 @@ const DistrictsList= (props) => {
       fetchDistricts();
       //fetchStateNameFromID(stateID);
       fetchStatesToGetStateNameFromID();
+      fetchLoggedDataForPropertySubmission();
 
     }, []);
     const filteredData =  districtOptions.filter(

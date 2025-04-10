@@ -22,6 +22,7 @@ const AddPropertyAttributesAsComponent  = React.lazy(() => import("./AddProperty
 
 // import { setSubmissionErrors } from "react-admin";
 import { neworOldType } from "../../constants/global";
+import { fetchLoggedDataCommon } from "../common/Functions";
 
 
 var newUrl = Url + 'location/state';
@@ -35,6 +36,7 @@ var getTownUrl = Url + 'location/towns';
 var addPropertyURL = Url + 'property/addProperty';
 var addPropertyImagesURL = Url + 'addPropertyImages';
 var getownerdetailsurl=Url+'property/ownersandbuilders';
+var loggedCheckUrl = Url + 'accounts/loggedInUser';
 
 const AddProperty = (props) => {
 
@@ -78,6 +80,9 @@ const AddProperty = (props) => {
     const [progressBar, setProgressBar] = useState(0);
     const presetKey = "";
     const [files, setFiles] = useState([]);
+      const[loggedinusername,setLoggedusername]=useState("");
+      const[loggedinuserid,setLoggeduserId]=useState("");
+      const[loggedinuserRole,setLoggeduserRole]=useState("");
 
    
 
@@ -168,6 +173,43 @@ const AddProperty = (props) => {
     //const data = JSON.parse(fs.readFileSync("../../json/places.json"));
 
 // alert(uniqueID)
+const fetchLoggedDataForPropertySubmission = (e) => {
+
+  //Functions();
+
+  //alert("Paulsin");
+
+  const response = axios.get(loggedCheckUrl,
+    {withCredentials:true }
+  )
+  .then(function (response) {
+    //alert(response.data.userID);
+    setLoggedusername(response.data.username);
+    setLoggeduserRole(response.data.userRole)
+    setLoggeduserId(response.data.userID);
+    if(response.data.username && response.data.password) {
+      //alert("Logged In");
+      //navigate('/frontend/profile');
+      //setSelectedDIV(loginDIV);
+
+      
+      //alert(response.data.userID);
+
+      //setLoggedUserMenu(response.data.username);
+      //setLoggedUserRole(response.data.userRole);
+      // setLoggedUserIDforPropertySubmission(response.data.userID);
+    }
+    //setUsername(response.data.username);
+  })
+  .catch(function (error) {
+    console.log(error);
+  }); 
+
+}
+
+
+
+
     const addState = async (e) => {
       //ssalert("Paulsin");
 
@@ -180,7 +222,10 @@ const AddProperty = (props) => {
             newUrl,
             {
               "stateName": stateName,    
-              "stateCode": stateCode
+              "stateCode": stateCode,
+              "donebyUserId":loggedinuserid,
+            "donebyUserName":loggedinusername,
+            "donebyUserrole":loggedinuserRole
             }     
           );  
 
@@ -267,7 +312,10 @@ const AddProperty = (props) => {
               {
                 "stateID": stateNameSelectedID,
                 "districtName": districtName,    
-                "districtCode": districtCode
+                "districtCode": districtCode,
+                "donebyUserId":loggedinuserid,
+          "donebyUserName":loggedinusername,
+          "donebyUserrole":loggedinuserRole
               }     
             );  
 
@@ -327,7 +375,10 @@ const AddProperty = (props) => {
                 "stateID": stateNameSelectedID,
                 "districtID": districtNameSelectedID,
                 "townName": townName,    
-                "townCode": townCode
+                "townCode": townCode,
+                "donebyUserId":loggedinuserid,
+          "donebyUserName":loggedinusername,
+          "donebyUserrole":loggedinuserRole
               }     
             );  
 
@@ -678,6 +729,7 @@ useEffect(() => {
 
   fetchDistricts();
   fetchTowns(); 
+  fetchLoggedDataForPropertySubmission();
 
   // fetchOwnerdetails();
 
