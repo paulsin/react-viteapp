@@ -40,13 +40,14 @@ const History = () => {
     const navigate = useNavigate();
 
     const {newID} = useParams();
+    let loggid;
 
     //alert(newID);
 
 
 
     function createrows(row){
-        alert(loggedinuserid)
+        // alert(loggid)
         var slno =1;
         let temparrayfornames=[]
         
@@ -54,7 +55,7 @@ const History = () => {
                   row.map(row1=>{
                     // console.log("row1 ID:", row1.donebyUserId, "| Length:", row1.donebyUserId.length);
                     //alert(row1.donebyUserId)
-                    // if (row1.donebyUserId.trim().toString() === loggedinuserid.trim().toString()) {
+                    if (row1.donebyUserId === loggid) {
                         // alert("haiii")
                         temparrayfornames.push({
                             'slno':slno++,
@@ -70,7 +71,7 @@ const History = () => {
                             
                           })
 
-                    // }
+                     }
                     
                     })
          
@@ -101,7 +102,7 @@ const History = () => {
         )
         .then(function (response) {
         //   alert(response.data.userID);
-       
+            loggid=response.data.userID
           setLoggeduserId(response.data.userID);
         //   console.log("loggedinuserid:", loggedinuserid, "| Length:", loggedinuserid.length);
           if(response.data.username && response.data.password) {
@@ -125,7 +126,7 @@ const History = () => {
     }
     useEffect(() => {
         //console.log('i fire once');
-         fetchLoggedDataForPropertySubmission();
+        fetchLoggedDataForPropertySubmission();
         fetchHistory();
        
         //alert("Paulsin");
