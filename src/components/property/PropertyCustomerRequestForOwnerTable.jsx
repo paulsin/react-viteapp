@@ -28,6 +28,7 @@ var updateStateUrl = Url + 'location/updateState/';
 
 var  deleteRequestUrl = Url + 'property/deletePropertyCustomerRequestForOwner/';
 
+
 const PropertyCustomerRequestForOwnerTable = (props) => {
   
 const statusoptions = [
@@ -64,6 +65,7 @@ const statusoptions = [
 
  // alert(param1)
   //alert(param2)
+  
   function createdata(requestdatas,propertydatas,ownerdatas){
   //  alert(data)
     var slno=1;
@@ -182,6 +184,7 @@ const statusoptions = [
     }
   }
     useEffect(() => {
+      
         // if(param1==="table" && param2==="table"){
                   //setSelectedDIV(<PropertyCustomerRequestForOwner param1={param1} param2={param2}/>);
                 // }

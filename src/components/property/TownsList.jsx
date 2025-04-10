@@ -22,6 +22,8 @@ var districtsUrl = "/frontend/location/districtsList/india/";
 
 var fetchStateNameFromIDurl = "/location/stateNameFromID/";
 
+var loggedCheckUrl = Url + 'accounts/loggedInUser';
+
 const TownsList= (props) => {
 
 
@@ -39,7 +41,10 @@ const TownsList= (props) => {
 
     const [stateNameInTable, setStateNameInTable] = useState();
     const [districtNameInTable, setDistrictNameInTable] = useState();
-     const [searchTerm, setSearchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
+    const[loggedinusername,setLoggedusername]=useState("");
+    const[loggedinuserid,setLoggeduserId]=useState("");
+    const[loggedinuserRole,setLoggeduserRole]=useState("");
 
     const districtOptionsArray = [];
     const townOptionsArray = [];
@@ -56,7 +61,40 @@ const TownsList= (props) => {
     const {districtID} = useParams();
 
     //alert(stateID);
+    const fetchLoggedDataForPropertySubmission = (e) => {
 
+      //Functions();
+    
+      //alert("Paulsin");
+    
+      const response = axios.get(loggedCheckUrl,
+        {withCredentials:true }
+      )
+      .then(function (response) {
+        //alert(response.data.userID);
+        setLoggedusername(response.data.username);
+        setLoggeduserRole(response.data.userRole)
+        setLoggeduserId(response.data.userID);
+        if(response.data.username && response.data.password) {
+          //alert("Logged In");
+          //navigate('/frontend/profile');
+          //setSelectedDIV(loginDIV);
+    
+          
+          //alert(response.data.userID);
+    
+          //setLoggedUserMenu(response.data.username);
+          //setLoggedUserRole(response.data.userRole);
+          // setLoggedUserIDforPropertySubmission(response.data.userID);
+        }
+        //setUsername(response.data.username);
+      })
+      .catch(function (error) {
+        console.log(error);
+      }); 
+    
+    }
+    
     const fetchTowns =  async (e) => {
       try {
         const response = await axios.get(getTownUrl,   
@@ -151,7 +189,10 @@ const TownsList= (props) => {
           "stateID" : stateID,
           "districtID" : districtID,
           "townName": modalTownName,    
-          "townCode": modalTownCode
+          "townCode": modalTownCode,
+          "donebyUserId":loggedinuserid,
+          "donebyUserName":loggedinusername,
+          "donebyUserrole":loggedinuserRole
         }     
       ); 
 
@@ -248,6 +289,7 @@ const TownsList= (props) => {
       //fetchStateNameFromID(stateID);
       fetchStatesToGetStateNameFromID();
       fetchDistrictsToGetStateNameFromID();
+      fetchLoggedDataForPropertySubmission();
 
     }, []);
 

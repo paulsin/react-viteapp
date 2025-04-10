@@ -115,6 +115,9 @@ function Navbar(props) {
             <li class="nav-item">
               <a class="nav-link" href="/frontend/listOwners">Owners</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/frontend/history">History</a>
+            </li>
 
             <li class="nav-item">
               <a class="nav-link" href="/frontend/location/statesList/india">Location</a>
