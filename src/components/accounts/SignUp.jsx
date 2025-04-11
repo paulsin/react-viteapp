@@ -1,18 +1,20 @@
 
-import React, { Suspense } from "react";
+import React, { Suspense} from "react";
 
 
 
 import { Url } from "../../constants/global";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import {  Link,useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect,useMemo } from "react";
+import {  Link,useNavigate, useParams  } from "react-router-dom";
+
 
 var newUrl = Url + 'accounts/person';
 const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
-
+var accurl= Url+'accounts/';
 
 const SignUp = (props) => {
+ 
    
 
     const [name, setName] = useState("");
@@ -27,6 +29,10 @@ const SignUp = (props) => {
     const [buttonLabel, setButtonLabel] = useState("Submit");
     const [emailBoxStatus, setEmailBoxStatus] = useState(false);
     const [newID, setNewID] = useState(props.newID);
+    const[otp,setOtp]=useState("");
+    const [showOtpInput, setShowOtpInput] = useState(false);
+    const [showOtpButton, setShowOtpButton] = useState(true);
+    const [hidesubmitButton, setHidesubmitButton] = useState(false);
 //    const [dataCheckFlag, setDataCheckFlag] = useState(0);
 
     ///   For navigate function
@@ -35,6 +41,7 @@ const SignUp = (props) => {
     //const {newID} = useParams();
 
     //alert(newID);
+
 
     const dataCheckFunction = (e) => {
 
@@ -259,7 +266,77 @@ const SignUp = (props) => {
         handleSubmit();
       }
     }
+    const Sendotp = async (e) => {
+      e.preventDefault(); 
+      const sendotpURL = accurl + "send-otp";
+      // alert(sendotpURL);
+    
+      try {
+        const response = await axios.post(sendotpURL, { email });
+    
+        // alert(response.data);
+        setAlertContent("Wait for the Otp");
+        setAlertClass("alert alert-info");
+        if (response.data === "OTP sent") {
+          // alert("haiii")
+          // // console.log("Showing OTP input...");
+          setAlertContent("Please enter the otp send to your email");
+          setAlertClass("alert alert-info");
+          setShowOtpInput(true); 
+          setShowOtpButton(false);
+          setHidesubmitButton(true);
+        } else  if(response.data==="Error sending email"){
+          setAlertContent("Please verify your email");
+          setAlertClass("alert alert-danger");
+          setShowOtpInput(false); 
+          setShowOtpButton(true);
+          setHidesubmitButton(false);
+        }
+        
+      } catch (error) {
+        console.error("Error posting data:", error);
+      }
+    }
+    const verifyOtp = async (e) => {
+      e.preventDefault();
+      var verifyotpURL = accurl + "verify-otp";
+      // alert(verifyotpURL)
+    
+      try {
+        const response = await axios.post(verifyotpURL, { email, otp })
+         
+            // alert(response.data)
+            if(response.data==="OTP verified"){
+              if(newID) {
+                handleUpdate();
+              }
+              else {
+                handleSubmit();
+              }
 
+            }
+            else if(response.data==="OTP expired"){
+              setAlertContent("Otp Expired,Please try by using other Otp");
+              setAlertClass("alert alert-danger");
+            }
+            else if(response.data==="Invalid OTP"){
+              setAlertContent("Please enter the correct Otp number");
+              setAlertClass("alert alert-danger");
+            }
+            else if(response.data==="No OTP sent"){
+              setAlertContent("No otp sent yet");
+              setAlertClass("alert alert-danger");
+            } 
+           
+            
+         
+          } catch (error) {
+            console.error("Error posting data:", error);
+          }
+      }
+ 
+  
+    
 
     return(
 
@@ -315,9 +392,24 @@ const SignUp = (props) => {
                 <input class="form-check-input" type="checkbox" name="remember" /> Remember me
               </label>
             </div>
+            <button type="submit" class="btn btn-primary" onClick={Sendotp} hidden={hidesubmitButton}>{buttonLabel}</button>
+            {showOtpInput && (
+        <div class="mb-3 mt-3">
+        <label for="password">Otp</label>
+        <input type="text" class="form-control" id="otp" placeholder="Enter Otp" name="otp" 
+        required onChange={(e) => setOtp(e.target.value)} value={otp} />
+      </div>
+      ) }
+      
+            <button type="submit" class="btn btn-primary" onClick={verifyOtp} hidden={showOtpButton}>{buttonLabel}</button>
+            {/* <button type="submit" class="btn btn-primary" onClick={buttonClickFunction}>{buttonLabel}</button> */}
+
+
+
+ 
+    
+  
             
-            <button type="submit" class="btn btn-primary" onClick={buttonClickFunction}>{buttonLabel}</button>
-          
         </div>
 
         
