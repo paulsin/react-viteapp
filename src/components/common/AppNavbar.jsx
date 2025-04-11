@@ -116,8 +116,9 @@ function AppNavbar() {
   
             {loggedUserMenu && (
               <NavDropdown title={loggedUserMenu} id="user-dropdown" className="ms-3">
-                <NavDropdown.Item href="/home">Home</NavDropdown.Item>
-                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                <NavDropdown.Item href="/">Home</NavDropdown.Item>
+                <NavDropdown.Item>{loggedUserMenu}</NavDropdown.Item>
+                <NavDropdown.Item href="/frontend/profile">Profile</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={logOut}>Log out</NavDropdown.Item>
               </NavDropdown>
