@@ -1,4 +1,4 @@
-import { Navbar, Nav, Container } from 'react-bootstrap';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import logo_agentfree from '../../images/logo_agentfree.jpeg';
@@ -8,6 +8,7 @@ import React, { useState ,useEffect} from 'react';
 
 
 import { Link, useNavigate, useParams, useLocation } from "react-router-dom";
+import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 import axios from "axios";
 
 var newUrl = Url + 'accounts/logInFunction';
@@ -83,47 +84,47 @@ function AppNavbar() {
     fetchLoggedData();
   }, [location]);
       return (
-        <nav className="navbar" id="homenav">
-        <div className="logo"><img src={logo_agentfree} width="80px" height="50px"/></div>
+        <Navbar expand="lg" bg="danger" variant="dark" sticky="top">
+        <Container fluid className="px-3">
+          {/* Logo */}
+          <Navbar.Brand href="/" className="logo-brand me-4">
+            <img src={logo_agentfree} width="80px" height="50px" alt="Logo" />
+          </Navbar.Brand>
   
-        <button className="toggle-btn" onClick={() => setMenuOpen(!menuOpen)}>
-          ☰
-        </button>
+          {/* Toggle Button */}
+          <Navbar.Toggle aria-controls="main-navbar-nav" />
   
-        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-     
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/test">Test</Link></li>
-           {/* <li><Link to="/frontend/login">Login</Link></li>
-          <li><Link to="/frontend/addProperty/new/new">Add Property</Link></li>
-          <li><Link to="/frontend/properties">Properties</Link></li>
-          <li><Link to="/frontend/propertyCustomerRequestForOwner/table/table">Requests</Link></li>
-          <li><Link to="/frontend/listOwners">Owners</Link></li>
-          <li><Link to= "/frontend/location/statesList/india">Location</Link></li> */}
-          {/* { loggedUserRole == "owner" ? <li><Link to="/frontend/signupCheck">Register</Link></li> 
-          :""}
-
-         
-          { loggedUserRole == "owner" ? <li><Link to="/frontend/listusersowntable">Users</Link></li>
-          :""}
-        
-
-          { loggedUserRole == "owner" ?  
-              <li className="dropdown">
-                <button onClick={() => setDropdownOpen(!dropdownOpen)}>
-                {loggedUserMenu} ▼
-                </button>
-                <ul className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
-                  <li><Link to="/services/web">Home</Link></li>
-                  <li><Link to="/services/design">{loggedUserMenu}</Link></li>
-                  <li><Link to="/services/design">Profile</Link></li>
-                  <li><Link onClick={logOut}>Log out</Link></li>
-                </ul>
-              </li>
-          :""} */}
-           
-        </ul>
-      </nav>
+          {/* Nav Links */}
+          <Navbar.Collapse id="main-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="/">Home</Nav.Link>
+              <Nav.Link href="/test">Test</Nav.Link>
+              <Nav.Link href="/frontend/login">Login</Nav.Link>
+              <Nav.Link href="/frontend/addProperty/new/new">Add Property</Nav.Link>
+              <Nav.Link href="/frontend/properties">Properties</Nav.Link>
+              <Nav.Link href="/frontend/propertyCustomerRequestForOwner/table/table">Requests</Nav.Link>
+              <Nav.Link href="/frontend/listOwners">Owners</Nav.Link>
+              <Nav.Link href="/frontend/history">History</Nav.Link>
+              <Nav.Link href="/frontend/location/statesList/india">Location</Nav.Link>
+              {loggedUserRole === 'owner' && (
+                <>
+                  <Nav.Link href="/frontend/signupCheck">Register</Nav.Link>
+                  <Nav.Link href="/frontend/listusersowntable">Users</Nav.Link>
+                </>
+              )}
+            </Nav>
+  
+            {loggedUserMenu && (
+              <NavDropdown title={loggedUserMenu} id="user-dropdown" className="ms-3">
+                <NavDropdown.Item href="/home">Home</NavDropdown.Item>
+                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={logOut}>Log out</NavDropdown.Item>
+              </NavDropdown>
+            )}
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
       );
 }
 

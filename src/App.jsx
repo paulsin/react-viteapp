@@ -5,6 +5,8 @@ import { useState } from 'react'
 import './custom/custom.css';
 import './custom/anju.css';
 import './custom/paulsin.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import {
   Route,

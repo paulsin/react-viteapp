@@ -1,6 +1,6 @@
 
 import React, { Suspense } from "react";
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -281,7 +281,7 @@ const AddImages = (props) => {
 
     <div>
 
-        <Suspense><Navbar/></Suspense>
+         <Suspense><AppNavbar /></Suspense>
         <h2 className="text-center pt-4" id="addimagecaption">Add Images</h2>
 
         <div class="row pt-4 p-0">

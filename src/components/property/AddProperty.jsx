@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import background from "../../images/background.jpg";
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -826,7 +826,7 @@ useEffect(() => {
     return(
 
     <div>
-        <Suspense><Navbar /></Suspense>
+         <Suspense><AppNavbar /></Suspense>
 
         <div class="container mt-3">
 

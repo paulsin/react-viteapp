@@ -1,5 +1,6 @@
 
 import React, { useState } from "react";
+import { Navbar, Nav, Container, NavDropdown, Button } from 'react-bootstrap';
 
 import axios from "axios";
 import { Url } from "../../constants/global";
@@ -76,23 +77,27 @@ function NavbarPublic(props) {
   return(
 
     <>
-      <nav class="navbar navbar-expand-md" id="navbarPublic">
-        <a class="navbar-brand pl-3" href="#"><img src={logo_agentfree} width="80px" height="50px"/></a>
-        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="main-navigation">
-          <ul class="navbar-nav" id="navigation">
-            <li class="nav-item">
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/test">Test</a>
-            </li>
- 
-          </ul>
-        </div>
-      </nav>
+       <Navbar expand="lg"  style={{ backgroundColor:" #26617c" }} sticky="top" >
+              <Container fluid className="px-3">
+                {/* Logo */}
+                <Navbar.Brand href="/" className="logo-brand me-auto">
+                  <img src={logo_agentfree} width="80px" height="50px" alt="Logo" />
+                </Navbar.Brand>
+        
+                {/* Toggle Button */}
+                <Navbar.Toggle aria-controls="main-navbar-nav" />
+        
+                {/* Nav Links */}
+                <Navbar.Collapse id="main-navbar-nav" style={{ backgroundColor:" #26617c" }} >
+                  <Nav className="ms-auto" >
+                    <Nav.Link href="/">Home</Nav.Link>
+                    <Nav.Link href="/test">Test</Nav.Link>
+                    
+                  </Nav>
+        
+                </Navbar.Collapse>
+              </Container>
+            </Navbar>
 
     </>
 

@@ -9,7 +9,7 @@ import {   Link,useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 const Loading = React.lazy(() => import("../common/Loading"));
 const LoginDIV = React.lazy(() => import("./LoginDiv"));
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 
 //import Functions from "../common/Functions";
 import { fetchLoggedDataCommon } from "../common/Functions";
@@ -103,7 +103,7 @@ const Login = () => {
 
     <div>
 
-       <Suspense><Navbar /> </Suspense> 
+        <Suspense><AppNavbar /></Suspense>
 
       {selectedDIV}
 

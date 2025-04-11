@@ -83,104 +83,66 @@ function Navbar(props) {
   return(
 
     <>
-      <nav class="navbar navbar-expand-md ">
-        <a class="navbar-brand" href="#"><img src={logo_agentfree} width="80px" height="50px"/></a>
-        <button class="navbar-toggler navbar-dark" type="button" data-toggle="collapse" data-target="#main-navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="main-navigation">
-          <b><ul class="navbar-nav">
-            <li class="nav-item">
-           
-              <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/test">Test</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/frontend/login">Login</a>
-            </li>
+     <nav className="navbar navbar-expand-md">
+  <div className="container-fluid">
+    {/* Logo */}
+    <a className="navbar-brand" href="/">
+      <img src={logo_agentfree} width="80px" height="50px" alt="Logo" />
+    </a>
 
-            <li class="nav-item">
-              <a class="nav-link" href="/frontend/addProperty/new/new">Add property</a>
-            </li>
+    {/* Toggle button for small screens */}
+    <button
+      className="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span className="navbar-toggler-icon"></span>
+    </button>
 
-            <li class="nav-item">
-              <a class="nav-link" href="/frontend/properties">Properties</a>
-            </li>
+    {/* Collapsible menu */}
+    <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <li className="nav-item"><a className="nav-link" href="/">Home</a></li>
+        <li className="nav-item"><a className="nav-link" href="/test">Test</a></li>
+        <li className="nav-item"><a className="nav-link" href="/frontend/login">Login</a></li>
+        <li className="nav-item"><a className="nav-link" href="/frontend/addProperty/new/new">Add property</a></li>
+        <li className="nav-item"><a className="nav-link" href="/frontend/properties">Properties</a></li>
+        <li className="nav-item"><a className="nav-link" href="/frontend/propertyCustomerRequestForOwner/table/table">Requests</a></li>
+        <li className="nav-item"><a className="nav-link" href="/frontend/listOwners">Owners</a></li>
+        <li className="nav-item"><a className="nav-link" href="/frontend/history">History</a></li>
+        <li className="nav-item"><a className="nav-link" href="/frontend/location/statesList/india">Location</a></li>
 
-            <li class="nav-item">
-              <a class="nav-link" href="/frontend/propertyCustomerRequestForOwner/table/table">Requests</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/frontend/listOwners">Owners</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/frontend/history">History</a>
-            </li>
+        {loggedUserRole === "owner" && (
+          <>
+            <li className="nav-item"><a className="nav-link" href="/frontend/signupCheck">Register</a></li>
+            <li className="nav-item"><a className="nav-link" href="/frontend/listusersowntable">Users</a></li>
+          </>
+        )}
+      </ul>
 
-            <li class="nav-item">
-              <a class="nav-link" href="/frontend/location/statesList/india">Location</a>
-            </li>
-            
-            { loggedUserRole == "owner" ?
-
-            <li class="nav-item">
-              <a class="nav-link" href="/frontend/signupCheck">Register</a>
-            </li> : ""
-
-            }
-
-            { loggedUserRole == "owner" ?
-
-            <li class="nav-item">
-              <a class="nav-link" href="/frontend/listusersowntable">Users</a>
-            </li> : ""
-
-            }
-
-
-            {
-              loggedUserMenu ? 
-              <li>
-
-                <Dropdown>
-                  <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    {loggedUserMenu}
-        
-                  </Dropdown.Toggle>
-
-                  <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Home</Dropdown.Item>
-                    <Dropdown.Item href="#/action-1">{loggedUserMenu}</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Profile</Dropdown.Item>
-                    <Dropdown.Item onClick={logOut}>Log out</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-
-{/*
-
-                <div class="dropdown">
-                  <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                    {loggedUserMenu}
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><h5 class="dropdown-header">Dropdown header 1</h5></li>
-                    <li><a class="dropdown-item" href="/frontend/profile">Profile</a></li>
-                    <li><a class="dropdown-item" href="#">Link 2</a></li>
-                    <li><a class="dropdown-item" href="#">Link 3</a></li>
-                    <li><h5 class="dropdown-header">Dropdown header 2</h5></li>
-                    <li><a class="dropdown-item" href="#" onClick={logOut}>Log out</a></li>
-                  </ul>
-                </div>
-*/}
-              </li> : ""
-            }
-
-            
-          </ul></b>
+      {/* Dropdown user menu */}
+      {loggedUserMenu && (
+        <div className="d-flex">
+          <Dropdown>
+            <Dropdown.Toggle variant="primary" id="dropdown-basic">
+              {loggedUserMenu}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              <Dropdown.Item href="/">Home</Dropdown.Item>
+              <Dropdown.Item>{loggedUserMenu}</Dropdown.Item>
+              <Dropdown.Item href="/frontend/profile">Profile</Dropdown.Item>
+              <Dropdown.Item onClick={logOut}>Log out</Dropdown.Item>
+            </Dropdown.Menu>
+          </Dropdown>
         </div>
-      </nav>
+      )}
+    </div>
+  </div>
+</nav>
 
     </>
 

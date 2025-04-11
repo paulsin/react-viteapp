@@ -2,7 +2,7 @@ import React,{Suspense ,useState, useEffect } from "react";
 import background from "../../images/background.jpg";
 
 const Footer = React.lazy(() => import('../common/Footer'));
-const AppNavbar= React.lazy(() => import("../common/AppNavbar"));
+const NavbarPublic= React.lazy(() => import("../common/NavbarPublic"));
 const Pagination= React.lazy(() => import("./Pagination"));
 
 
@@ -770,7 +770,7 @@ const handleSelectedPropertyType = (e) => {
   }
   return(
       <div>
-        <Suspense> <AppNavbar /></Suspense>
+        <Suspense> <NavbarPublic /></Suspense>
         <header class="page-header header container-fluid-full mx-auto p-3">
         
           <div className='container p-4' id="searchpropclass" >

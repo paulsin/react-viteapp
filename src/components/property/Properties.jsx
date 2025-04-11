@@ -3,7 +3,7 @@ import React, { Suspense } from "react";
 
 
 // import AppNavbar from "../common/AppNavbar";
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -161,7 +161,7 @@ const Properties = (props) => {
     return(
       <div>
 
-        <Suspense><Navbar/></Suspense>
+       <Suspense><AppNavbar /></Suspense>
         {/* <AppNavbar/> */}
           <div>
             <div class="row mb-3 p-4">

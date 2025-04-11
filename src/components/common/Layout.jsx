@@ -1,12 +1,12 @@
 import React, { Suspense } from "react";
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 
 const Layout = ({ children }) => {
   return (
     <>
       
             
-      <Suspense><Navbar/></Suspense>
+       <Suspense><AppNavbar /></Suspense>
       <div style={{ paddingTop: '50px' }} className="container">
         {children}
       </div>

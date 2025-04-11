@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 import { Url } from "../../constants/global";
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -236,7 +236,7 @@ const Owners = () => {
     return(
 
         <div>
-        <Suspense><Navbar/></Suspense>
+         <Suspense><AppNavbar /></Suspense>
 
         <div>
           <div class="row mb-3 p-4">

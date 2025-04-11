@@ -1,6 +1,6 @@
 
 import React, { Suspense } from "react";
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 
 
 import { useState, useEffect } from "react";
@@ -14,7 +14,7 @@ function NotAuthorized() {
 
     return(
         <div>
-      <Suspense><Navbar/></Suspense>
+       <Suspense><AppNavbar /></Suspense>
       <div class="container d-flex justify-content-center">
         <h1>
             Not authorized
