@@ -1,7 +1,7 @@
 
 import React, { Suspense } from "react";
 
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 
 import { Url } from "../../constants/global";
 
@@ -161,7 +161,7 @@ const History = () => {
 
     return(
         <>
-        <Suspense><Navbar /> </Suspense> 
+         <Suspense><AppNavbar /></Suspense>
               <div>
               <div class="row mb-3 p-4">
     

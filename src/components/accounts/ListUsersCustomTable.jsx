@@ -1,7 +1,7 @@
 
 import React, { Suspense } from "react";
 
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 
 
 import { Url } from "../../constants/global";
@@ -132,7 +132,7 @@ const ListUsersCustomTable = () => {
   return(
 
     <>
-     <Suspense><Navbar /> </Suspense> 
+      <Suspense><AppNavbar /></Suspense>
       <div>
         <div className="input-group p-2">
           <input type="text" className="form-control" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2" 

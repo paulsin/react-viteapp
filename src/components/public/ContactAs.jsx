@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 const Footer = React.lazy(() => import('../common/Footer'));
 const WhatsAppBlack = React.lazy(() => import('../../assets/icons/whatsapp-black.svg?react'));
 import logo_agentfree from '../../images/logo_agentfree.jpeg';
@@ -10,7 +10,7 @@ import { Phone } from 'lucide-react';
 const ContactAs = () => {
   return (
     <>
-    <Suspense><Navbar/></Suspense>
+     <Suspense><AppNavbar /></Suspense>
     <div class="container text-center p-5 mt-5">
         <img src={logo_agentfree} width="280px" height="180px"/>
     </div>

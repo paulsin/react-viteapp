@@ -1,7 +1,7 @@
 
 import React, { Suspense } from "react";
 
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar = React.lazy(() => import("../common/AppNavbar"));
 
 import { Url } from "../../constants/global";
 
@@ -35,7 +35,7 @@ const Profile = () => {
 
     return(
         <>
-        <Suspense><Navbar /> </Suspense>
+         <Suspense><AppNavbar /></Suspense>
         <div className="container mt-3">
      
             <h1>Hello man</h1>

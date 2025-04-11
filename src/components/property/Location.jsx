@@ -1,6 +1,6 @@
 
 import React, { Suspense } from "react";
-const Navbar = React.lazy(() => import("../common/Navbar"));
+const AppNavbar= React.lazy(() => import("../common/AppNavbar"));
 import { Url } from "../../constants/global";
 
 import { useState, useEffect } from "react";
@@ -48,7 +48,7 @@ const Location = (props) => {
 
     <div>
 
-        <Suspense><Navbar /></Suspense>
+        <Suspense><AppNavbar /></Suspense>
 
 
         <div class="container mt-3">
