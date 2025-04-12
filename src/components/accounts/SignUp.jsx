@@ -316,7 +316,7 @@ const SignUp = (props) => {
 
             }
             else if(response.data==="OTP expired"){
-              setAlertContent("Otp Expired,Please try by using other Otp");
+              setAlertContent("Otp Expired,Please try by using another Otp");
               setAlertClass("alert alert-danger");
             }
             else if(response.data==="Invalid OTP"){
@@ -324,7 +324,7 @@ const SignUp = (props) => {
               setAlertClass("alert alert-danger");
             }
             else if(response.data==="No OTP sent"){
-              setAlertContent("No otp sent yet");
+              setAlertContent("Otp didn't sent yet");
               setAlertClass("alert alert-danger");
             } 
            
@@ -342,7 +342,7 @@ const SignUp = (props) => {
 
     <div>
 
-        <Suspense><AppNavbar /></Suspense>
+        <Suspense><AppNavbar/></Suspense>
 
 
         <div className="pl-3 mt-5 pb-3 pr-3 ">

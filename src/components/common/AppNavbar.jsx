@@ -84,7 +84,8 @@ function AppNavbar() {
     fetchLoggedData();
   }, [location]);
       return (
-        <Navbar expand="lg" bg="danger" variant="dark" sticky="top">
+
+        <Navbar expand="lg" bg="danger" variant="dark" style={{ backgroundColor:" #f91251" }} sticky="top">
         <Container fluid className="px-3">
           {/* Logo */}
           <Navbar.Brand href="/" className="logo-brand me-4">

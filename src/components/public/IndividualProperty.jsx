@@ -41,9 +41,7 @@ function IndividualProperty() {
         <Suspense><IndividualPropertyDetailsComponent propertyID={propertyID}/></Suspense>
         <Suspense><IndividualPropertymessageComponent propertyID={propertyID}/></Suspense>
         {/* <Suspense><IndividualPropertyGoogleMap propertyID={propertyID}/></Suspense> */}
-        <Suspense><IndividualPropertyRelatedProperty propertyID={propertyID}/></Suspense>
-      
-           
+        <Suspense><IndividualPropertyRelatedProperty propertyID={propertyID}/></Suspense> 
          <Suspense><Footer/></Suspense> 
       </div>
     )

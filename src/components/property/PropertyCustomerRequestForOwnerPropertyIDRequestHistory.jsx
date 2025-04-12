@@ -122,81 +122,81 @@ const PropertyCustomerRequestForOwnerPropertyIDRequestHistory = (props) => {
                 />
               </div>
             </div>
-         
-            <table className="table table-striped" id="selectedTable">
-              <thead>
-                <tr>
-                  <th>
-                  Index
-                  </th>
-                  <th>
-                  Property Id
-                  </th>
-                  <th>
-                  Property Image
-                  </th>
-                  <th>
-                    Request Date
-                  </th>
-                  <th>
-                    Request Time
-                  </th>
-                  <th>
-                   Requester Mobile
-                  </th>
-
-                  <th>
-                    Requester Name
-                  </th>
-
-                  <th>
-                   Requester Message
-                  </th>
-                   {/* <th>
-                  Actions
-                  </th> */}
-                </tr>
-              </thead>
-              <tbody>
-              
-                {filteredData.map(key =>  (
+            <div className="table-responsive pl-3 pb-3 pr-3">
+              <table className="table table-striped" id="selectedTable">
+                <thead>
                   <tr>
-                    <td>
-                      {key.slno}
-                    </td>
-                    <td> 
-                      {key.id}
-                  
-                    </td>
-                    <td> 
-                      <img src={key.imageUrl} width="120px" height="80px" />
-                    </td>
-                    <td>
-                     {formatDate(key.requestTime)}
-                    </td>
-                    <td>
-                     {formatTime(key.requestTime)}
-                    </td>
-                    <td>
-                      {key.requesterMobile}
-                    </td>
-                    <td>
-                      {key.requesterName}
-                    </td>
-                    <td>
-                      {key.requesterMessage}
-                    </td>
-                    {/* <td>
-                      <button className="btn btn-danger" >Actions</button> 
-                    </td> */}  
+                    <th>
+                    Index
+                    </th>
+                    <th>
+                    Property Id
+                    </th>
+                    <th>
+                    Property Image
+                    </th>
+                    <th>
+                      Request Date
+                    </th>
+                    <th>
+                      Request Time
+                    </th>
+                    <th>
+                    Requester Mobile
+                    </th>
+
+                    <th>
+                      Requester Name
+                    </th>
+
+                    <th>
+                    Requester Message
+                    </th>
+                    {/* <th>
+                    Actions
+                    </th> */}
                   </tr>
-                ))} 
-                <td>
-                </td>
-              </tbody>
-              <button class = "btn btn-primary" onClick={backtoTable}> Back </button>
-            </table>
-            
+                </thead>
+                <tbody>
+                
+                  {filteredData.map(key =>  (
+                    <tr>
+                      <td>
+                        {key.slno}
+                      </td>
+                      <td> 
+                        {key.id}
+                    
+                      </td>
+                      <td> 
+                        <img src={key.imageUrl} width="120px" height="80px" />
+                      </td>
+                      <td>
+                      {formatDate(key.requestTime)}
+                      </td>
+                      <td>
+                      {formatTime(key.requestTime)}
+                      </td>
+                      <td>
+                        {key.requesterMobile}
+                      </td>
+                      <td>
+                        {key.requesterName}
+                      </td>
+                      <td>
+                        {key.requesterMessage}
+                      </td>
+                      {/* <td>
+                        <button className="btn btn-danger" >Actions</button> 
+                      </td> */}  
+                    </tr>
+                  ))} 
+                  <td>
+                  </td>
+                </tbody>
+                <button class = "btn btn-primary" onClick={backtoTable}> Back </button>
+              </table>
+            </div>  
           </div>
 
   )
