@@ -267,146 +267,148 @@ const statusoptions = [
               />
             </div>
           </div>
-          <table className="table table-striped" id="selectedTable">
-              <thead>
-                <tr>
-                  <th>
-                  Index
-                  </th>
-                 
-                  <th>
-                  Property Image & ID
-                  </th>
-                  <th>
-                    Builder Number
-                  </th>
-                  <th>
-                    Message To Owner
-                  </th>
-                  <th>
-                    Request Date
-                  </th>
-                  <th>
-                    Request Time
-                  </th>
-                  <th>
-                   Requester Mobile
-                  </th>
-
-                  <th>
-                    Requester Name
-                  </th>
-
-                  <th>
-                   Requester Message
-                  </th>
-                  <th>
-                      Status
-                  </th>
-                   <th>
-                      Message To Buyer
-                  </th>
-                  <th>
-                      Delete
-                  </th> 
-                </tr>
-              </thead>
-              <tbody>
-              
-                {filteredData.map(key =>  (
+          <div className="table-responsive pl-3 pb-3 pr-3">
+            <table className="table table-striped" id="selectedTable">
+                <thead>
                   <tr>
-                    <td>
-                      {key.slno}
-                    </td>
-                    
-                    <td>
-                    
-                      {/* {key.propertyID} 
-                      <Link to={`/frontend/propertyCustomerRequestForOwner/propertyID/${key.propertyID}`}>{key.propertyID}</Link>
-                      */}
-                      {key.id} 
-                       <button class = "btn btn-outline" onClick={()=>sendRequestedPropertyID(key.propertyID)}><img src={key.imageUrl} width="120px" height="80px" />
-                      </button>
+                    <th>
+                    Index
+                    </th>
+                  
+                    <th>
+                    Property Image & ID
+                    </th>
+                    <th>
+                      Builder Number
+                    </th>
+                    <th>
+                      Message To Owner
+                    </th>
+                    <th>
+                      Request Date
+                    </th>
+                    <th>
+                      Request Time
+                    </th>
+                    <th>
+                    Requester Mobile
+                    </th>
 
-                    </td>
-                    <td>
-                      {key.ownerContact}
-                    </td>
-                    <td>
-                      <textarea id="textareainrequestermobile">{`Enquiry about your property from this number : ${key.requesterMobile}`}</textarea>
-                    </td>
-                    <td>
-                     {formatDate(key.requestTime)}
-                    </td>
-                    <td>
-                     {formatTime(key.requestTime)}
-                    </td>
-                    <td>
-                      {key.requesterMobile}
-                    
-                    <button class="btn btn-primary" onClick={()=>sendRequestedMobilenumber(key.requesterMobile)}>Log</button>
-                      {/* <Link to={`/frontend/propertyCustomerRequestForOwner/phonenumber/${key.requesterMobile}`}>{key.requesterMobile} </Link> */}
-                    </td>
-                    <td>
-                      {key.requesterName}
-                    </td>
-                    <td>
-                      {key.requesterMessage}
-                    </td>
-                    <td>
-                      <button class={key.classnameofbutton} data-toggle="modal" data-target="#myModal" onClick={()=>handleStatusChange(key._id)} disabled={key.disablingofbutton}> {key.requestAssessmentStatus}</button> <br/>
-                     
-                      {/* <button type="button" class="btn btn-primary" onClick={()=>handleStatusChange(key._id)}>
-                      Change Status
-                      </button> */}
-                    
-                      <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Change Status</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                            </button>
-                          </div>
-                            <div class="modal-body">
-                              <p><Select onChange={statusChange} options={statusoptions}>
-                                </Select></p>
-                                <button type="submit" class="btn btn-success" onClick={handleSubmit}>Submit</button>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
-                          </div>
-      
-                        </div>
-                      </div>
+                    <th>
+                      Requester Name
+                    </th>
 
-                    </td>
-                    <td>
-                      <textarea id="textareainrequestpage">{`The contact number of the owner, that you requested is : ${key.ownerContact}`}</textarea>
-  
-                    </td> 
-                    <td>
-                        <button className="btn btn-danger" onClick={()=>handleDelete(key._id)}>Delete</button>
-                    </td>
-                    <td>
-              
-                    {/* <Select onChange={()=>handleStatusChange(key._id)} options={statusoptions}>
-                     
-                    </Select>
-                 */}
-                        {/* <button className="btn btn-danger" onClick={()=>handleStatusChange(key._id)}>Pending</button> */}
-                    </td>
-                 
-                 
-                   
+                    <th>
+                    Requester Message
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Message To Buyer
+                    </th>
+                    <th>
+                        Delete
+                    </th> 
                   </tr>
-                ))} 
-                <td>
-                </td>
-              </tbody>
-          </table>  
+                </thead>
+                <tbody>
+                
+                  {filteredData.map(key =>  (
+                    <tr>
+                      <td>
+                        {key.slno}
+                      </td>
+                      
+                      <td>
+                      
+                        {/* {key.propertyID} 
+                        <Link to={`/frontend/propertyCustomerRequestForOwner/propertyID/${key.propertyID}`}>{key.propertyID}</Link>
+                        */}
+                        {key.id} 
+                        <button class = "btn btn-outline" onClick={()=>sendRequestedPropertyID(key.propertyID)}><img src={key.imageUrl} width="120px" height="80px" />
+                        </button>
+
+                      </td>
+                      <td>
+                        {key.ownerContact}
+                      </td>
+                      <td>
+                        <textarea id="textareainrequestermobile">{`Enquiry about your property from this number : ${key.requesterMobile}`}</textarea>
+                      </td>
+                      <td>
+                      {formatDate(key.requestTime)}
+                      </td>
+                      <td>
+                      {formatTime(key.requestTime)}
+                      </td>
+                      <td>
+                        {key.requesterMobile}
+                      
+                      <button class="btn btn-primary" onClick={()=>sendRequestedMobilenumber(key.requesterMobile)}>Log</button>
+                        {/* <Link to={`/frontend/propertyCustomerRequestForOwner/phonenumber/${key.requesterMobile}`}>{key.requesterMobile} </Link> */}
+                      </td>
+                      <td>
+                        {key.requesterName}
+                      </td>
+                      <td>
+                        {key.requesterMessage}
+                      </td>
+                      <td>
+                        <button class={key.classnameofbutton} data-toggle="modal" data-target="#myModal" onClick={()=>handleStatusChange(key._id)} disabled={key.disablingofbutton}> {key.requestAssessmentStatus}</button> <br/>
+                      
+                        {/* <button type="button" class="btn btn-primary" onClick={()=>handleStatusChange(key._id)}>
+                        Change Status
+                        </button> */}
+                      
+                        <div class="modal fade" id="myModal" role="dialog">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Change Status</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                              <div class="modal-body">
+                                <p><Select onChange={statusChange} options={statusoptions}>
+                                  </Select></p>
+                                  <button type="submit" class="btn btn-success" onClick={handleSubmit}>Submit</button>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+        
+                          </div>
+                        </div>
+
+                      </td>
+                      <td>
+                        <textarea id="textareainrequestpage">{`The contact number of the owner, that you requested is : ${key.ownerContact}`}</textarea>
+    
+                      </td> 
+                      <td>
+                          <button className="btn btn-danger" onClick={()=>handleDelete(key._id)}>Delete</button>
+                      </td>
+                      <td>
+                
+                      {/* <Select onChange={()=>handleStatusChange(key._id)} options={statusoptions}>
+                      
+                      </Select>
+                  */}
+                          {/* <button className="btn btn-danger" onClick={()=>handleStatusChange(key._id)}>Pending</button> */}
+                      </td>
+                  
+                  
+                    
+                    </tr>
+                  ))} 
+                  <td>
+                  </td>
+                </tbody>
+            </table>  
+          </div>
          <Suspense> <PaginationforPropertyCustomerRequest totalPosts={requestsTable.length} recordsPerPage={recordsPerPage} setCurrentPage={setCurrentPage} 
             currentPage={currentPage} firstpostIndex={firstpostIndex} lastpostIndex={lastpostIndex}/></Suspense>
         </div>

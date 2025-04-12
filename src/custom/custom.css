@@ -34,7 +34,6 @@ body {
     background-color:#26617c !important;;
     justify-content: space-between;
     align-items: center;
-
     padding: 10px 20px;
     border-bottom: 1px solid #ccc;
     position: relative;
@@ -118,7 +117,7 @@ body {
     display: none;
     flex-direction: column;
     align-items: flex-start;
-    background-color: #f91251;
+    /* background-color: #0a090a; */
     padding: 10px 0;
   }
 
